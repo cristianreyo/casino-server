@@ -14,7 +14,7 @@ public class Juego {
     private ArrayList<Jugador> jugadores;
     private String descripcion;
     
-    Juego(String descripcion){
+    public Juego(String descripcion){
         jugadores = new ArrayList<Jugador>();
         this.descripcion = descripcion;
     }
