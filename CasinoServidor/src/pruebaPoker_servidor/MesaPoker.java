@@ -167,7 +167,14 @@ public class MesaPoker extends Thread {
 	 * @return
 	 */
 	private int calcularMax() {
-		return 0;
+        int posicion=0;
+        int max=0;
+        for(Jugador i:jugadoress){
+            if(i.getValorJugada()>max){
+                posicion=jugadoress.indexOf(i);
+            }
+        }
+		return posicion;
 	}
 	
 	/**
