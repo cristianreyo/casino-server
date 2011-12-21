@@ -10,8 +10,8 @@ import java.util.ArrayList;
  *
  * @author miguel
  */
-public class Juego {
-    private ArrayList<Jugador> jugadores;
+public class Juego extends Thread{
+    protected ArrayList<Jugador> jugadores;
     private String descripcion;
     
     public Juego(String descripcion){

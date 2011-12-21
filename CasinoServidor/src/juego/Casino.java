@@ -26,6 +26,7 @@ public class Casino {
     public static synchronized boolean createJuegoCartaAlta(Jugador cliente){
         Juego j = new CartaMasAlta();
         j.addGamer(cliente);
+        j.start();
         return juegos.add(j);
     }
     
