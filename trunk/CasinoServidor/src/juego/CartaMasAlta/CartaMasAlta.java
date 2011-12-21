@@ -4,7 +4,9 @@
  */
 package juego.CartaMasAlta;
 
+import java.io.IOException;
 import juego.Juego;
+import juego.Jugador;
 
 
 
@@ -15,7 +17,20 @@ import juego.Juego;
 public class CartaMasAlta extends Juego {
     
     public CartaMasAlta(){
-        super("CartaMasAlta");
-        
+        super("CartaMasAlta");        
     }
+
+    @Override
+    public void run() {
+        for(int i=0;i<5;i++){
+            System.out.println("CartaMasAlta");
+            for(Jugador j:jugadores){
+                try{
+                    j.writeObject(new String("hola"));
+                }catch(IOException e){}
+            }
+        }
+    }
+    
+    
 }
