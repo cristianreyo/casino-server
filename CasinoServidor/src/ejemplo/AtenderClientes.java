@@ -14,11 +14,11 @@ public class AtenderClientes extends Thread{
 	Vector<Socket> sockets=new Vector<Socket>(); //Vector con todos los sockets de los clientes.
 	Vector<String> cartas=new Vector<String>(); //Vector con los datos que lee de los clientes
 	/**
-	 * Metodo constructor de la clase que añade el socket al vector e inicia el hilo
+	 * Metodo constructor de la clase que aï¿½ade el socket al vector e inicia el hilo
 	 * @param cliente
 	 */
 	public AtenderClientes(Socket cliente){
-		sockets.add(cliente);//Añade un socket al vector
+		sockets.add(cliente);//Aï¿½ade un socket al vector
 	}
 	/**
 	 * Al ser una clase que hereda de Thread, necesita el metodo run, aunque no haga nada
@@ -27,14 +27,16 @@ public class AtenderClientes extends Thread{
 			DataInputStream is; //Creo un buffer de entrada
 			DataOutputStream os; //Creo un buffer de salida
 			String entrada="";
-			while(true){ //Las partidas van a ser a tres rondas, mañana explicaré el porqué de esto
-				Vector<Socket> clon=(Vector<Socket>) sockets.clone();	//Clono el vector, esto es porque no puedo iterar sobre un objeto que esta siendo modificado (excepcion de concurrencia)
+                        Vector<Socket> clon=(Vector<Socket>) sockets.clone();	
+			while(true){ //Las partidas van a ser a tres rondas, maï¿½ana explicarï¿½ el porquï¿½ de esto
+				clon.clear();
+                                clon=(Vector<Socket>) sockets.clone();	//Clono el vector, esto es porque no puedo iterar sobre un objeto que esta siendo modificado (excepcion de concurrencia)
 				for(Socket c:clon){//Para cada elemento del vector de sockets
 					try {
 						is=new DataInputStream(c.getInputStream());//Inicializo el buffer con el socket correspondiente
 						entrada=is.readUTF();//Leo el dato del buffer
 						System.out.println("Entrada: "+entrada);//Lo muestro por pantalla
-						cartas.add(entrada);//Lo añado al vector de entrada
+						cartas.add(entrada);//Lo aï¿½ado al vector de entrada
 					} catch (IOException e) {
 					}
 				} 
@@ -60,10 +62,10 @@ public class AtenderClientes extends Thread{
 		return cartas.get(0);
 	}
 	/**
-	 * Metodo que añade un socket al vector y ejecuta el juego
+	 * Metodo que aï¿½ade un socket al vector y ejecuta el juego
 	 * @param conexion
 	 */
 	public void anadir(Socket conexion){
-		sockets.add(conexion);//Añade el socket al vector
+		sockets.add(conexion);//Aï¿½ade el socket al vector
 	}
 }
