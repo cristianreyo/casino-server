@@ -14,15 +14,18 @@ import java.net.Socket;
  * @author miguel
  */
 public class Jugador {
+    private String nombre;
     private Socket cliente;
     private ObjectInputStream objectIn;// = new ObjectInputStream(in);
     private ObjectOutputStream objectOut;// = new ObjectOutputStream(out);
+
     
     public Jugador(Socket cliente){
         this.cliente = cliente;
         try{
             this.objectIn = new ObjectInputStream(cliente.getInputStream());
             this.objectOut = new ObjectOutputStream(cliente.getOutputStream());
+           
         }catch(Exception e){
             e.printStackTrace();
         }
