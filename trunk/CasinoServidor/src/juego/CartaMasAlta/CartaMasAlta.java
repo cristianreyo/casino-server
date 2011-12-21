@@ -14,8 +14,8 @@ import juego.Juego;
  */
 public class CartaMasAlta extends Juego {
     
-    public CartaMasAlta(String descripcion){
-        super(descripcion);
+    public CartaMasAlta(){
+        super("CartaMasAlta");
         
     }
 }

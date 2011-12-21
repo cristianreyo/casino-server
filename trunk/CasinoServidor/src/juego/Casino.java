@@ -6,6 +6,7 @@ package juego;
 
 import java.net.Socket;
 import java.util.ArrayList;
+import juego.CartaMasAlta.CartaMasAlta;
 
 /**
  *
@@ -23,7 +24,7 @@ public class Casino {
      * @return true si se ha podido creado crear el juego, false en otro caso
      */
     public static synchronized boolean createJuegoCartaAlta(Jugador cliente){
-        Juego j = new Juego("CartaAlta");
+        Juego j = new CartaMasAlta();
         j.addGamer(cliente);
         return juegos.add(j);
     }
