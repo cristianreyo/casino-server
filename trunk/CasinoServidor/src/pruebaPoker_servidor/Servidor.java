@@ -20,15 +20,15 @@ public class Servidor {
 					System.out.println("Creo una mesa");
 				}
 				else{//Si es cualquier otro numero de jugadores lo a�adimos a la ultima mesa disponible
-					if(mp.isAlive()){//Si el hilo esta vivo 
+					if(mp.isAlive()){//Si el hilo est� vivo 
 						mp.suspend(); //Lo pauso
 					}
-					mp.anadir(cliente);//Se añade un cliente
+					mp.anadir(cliente);//Se a�ade un cliente
 					try{
-						mp.start();//Intento iniciar el hilo, esto se ejecutara solo una vez
+						mp.start();//Intento iniciar el hilo, esto se ejecutar� solo una vez
 					}
 					catch (Exception e) {
-						mp.resume();//Reinicio el hilo despues de añadir
+						mp.resume();//Reinicio el hilo despues de a�adir
 					}
 					System.out.println("A�ado un jugador");
 				}
