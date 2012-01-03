@@ -30,7 +30,6 @@ public class MesaPoker extends Thread {
 		Vector<Jugador> jugadores=(Vector<Jugador>) jugadoress.clone();	 //Clono el vector de jugadores para poder acceder a el de forma concurrente
 		//Cada iteracion de este bucle es una partida de poker
 		while(true){//Bucle infinito
-			System.out.println("Nueva partida");
 			mesa.clear();//Limpio la mesa de cartas
 			b.barajar();//Se baraja otra vez la baraja
 			apuestas.clear();//Limpio el vector de apuestas
@@ -39,14 +38,11 @@ public class MesaPoker extends Thread {
 			mesa.add(b.getCarta(2));//Se obtiene la 3� carta
 			jugadores.clear();//Se limpia el vector de jugadores
 			jugadores=(Vector<Jugador>) jugadoress.clone();	 //Se clona el vector de jugadores
-			System.out.println("Tama�o del vector: "+jugadores.size());
 			//Envio las tres cartas de base
 			for(Jugador j:jugadores){
 				j.enviarCartas(mesa);
-				System.out.println("Enviando las cartas de la mesa");
 			}
 			
-			System.out.println("Antes de enviar las cartas del jugador");
 			//Envio a cada jugador dos cartas, y se las asigno a su objeto jugador
 			for(Jugador k:jugadores){
 				k.enviarCarta(b.getCarta(i));
@@ -54,35 +50,28 @@ public class MesaPoker extends Thread {
 				k.enviarCarta(b.getCarta(i+1));
 				k.setCarta2(b.getCarta(i+1));
 				i=i+2; //Incremento el contador en +2 porque cada juador recibe dos cartas
-				System.out.println("Envio las cartas a los jugadores");
 			}
 			
-			System.out.println("Leyendo las apuestas");
 			//Obtengo todas las apuestas de los jugadores
 			for (Jugador l:jugadores){
 				apuesta=l.obtenerApuesta();//Este metodo tambian asigna la apuesta con el set
 				apuestas.add(apuesta); //Las inserto en el vector de apuestas
-				System.out.println("Leo una apuesta");
 			}
 			
-			System.out.println("A�ado una carta mas a la mesa");
 			//Anado una carta en la mesa
 			mesa.add(b.getCarta(i));
 			i++;
 			//Reenvio las cartas de la mesa
 			for(Jugador k:jugadores){
 				k.enviarCartas(mesa);
-				System.out.println("Envio las cartas a los jugadores");
 			}
 			
-			System.out.println("Vuelvo a leer las apuestas");
 			//En este bucle actualizo las apuestas no las a�ado
 			for (Jugador l:jugadores){
 				apuesta=l.obtenerApuesta();//Este metodo tambian asigna la apuesta con el set
 				int pos=jugadores.indexOf(l);//Busco la posicion del jugador que estoy iterando
 				int acum=apuestas.get(pos);//Guardo lo que apost� en la jugada anterior
 				apuestas.set(pos, acum+apuesta);//Lo cambio, porque la apuesta es acumulativa
-				System.out.println("Leo las apuestas de forma individual");
 			}
 			
 			//Anado la ultima carta de la mesa
