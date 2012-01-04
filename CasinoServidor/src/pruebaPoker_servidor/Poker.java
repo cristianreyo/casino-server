@@ -9,7 +9,9 @@ import javax.swing.*;
 public class Poker {
 
 	public static boolean escaleraReal(Jugador gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=mesa;
+		Vector<Carta> todasCartas=new Vector<Carta>();
+		todasCartas.clear();
+		todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
 		Carta c1=new Carta("UNO", "PICAS","NEGRO",new ImageIcon("imagenes/1-Picas.jpg"));
@@ -49,7 +51,13 @@ public class Poker {
 	}
 
 	public static boolean escaleraColor(Jugador gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=mesa;
+		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
+		todasCartas.clear();
+		todasCartas.add(mesa.get(0));
+		todasCartas.add(mesa.get(1));
+		todasCartas.add(mesa.get(2));
+		todasCartas.add(mesa.get(3));
+		todasCartas.add(mesa.get(4));
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
 		Collections.sort(todasCartas);
@@ -175,7 +183,13 @@ public class Poker {
 	}
 
 	public static boolean poker(Jugador gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=mesa;
+		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
+		todasCartas.clear();
+		todasCartas.add(mesa.get(0));
+		todasCartas.add(mesa.get(1));
+		todasCartas.add(mesa.get(2));
+		todasCartas.add(mesa.get(3));
+		todasCartas.add(mesa.get(4));
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
 		Collections.sort(todasCartas);
@@ -202,7 +216,13 @@ public class Poker {
 	}
 
 	public static boolean full(Jugador gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=mesa;
+		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
+		todasCartas.clear();
+		todasCartas.add(mesa.get(0));
+		todasCartas.add(mesa.get(1));
+		todasCartas.add(mesa.get(2));
+		todasCartas.add(mesa.get(3));
+		todasCartas.add(mesa.get(4));
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
 		Collections.sort(todasCartas);
@@ -232,7 +252,13 @@ public class Poker {
 	}
 
 	public static boolean color(Jugador gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=mesa;
+		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
+		todasCartas.clear();
+		todasCartas.add(mesa.get(0));
+		todasCartas.add(mesa.get(1));
+		todasCartas.add(mesa.get(2));
+		todasCartas.add(mesa.get(3));
+		todasCartas.add(mesa.get(4));
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
 		Collections.sort(todasCartas);
@@ -280,9 +306,16 @@ public class Poker {
 	}
 
 	public static boolean escalera(Jugador gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=mesa;
+		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
+		todasCartas.clear();
+		todasCartas.add(mesa.get(0));
+		todasCartas.add(mesa.get(1));
+		todasCartas.add(mesa.get(2));
+		todasCartas.add(mesa.get(3));
+		todasCartas.add(mesa.get(4));
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
+		Collections.sort(todasCartas);
 		Carta c1=todasCartas.get(0);
 		Carta c2=todasCartas.get(1);
 		Carta c3=todasCartas.get(2);
@@ -377,7 +410,13 @@ public class Poker {
 	}
 
 	public static boolean trio(Jugador gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=mesa;
+		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
+		todasCartas.clear();
+		todasCartas.add(mesa.get(0));
+		todasCartas.add(mesa.get(1));
+		todasCartas.add(mesa.get(2));
+		todasCartas.add(mesa.get(3));
+		todasCartas.add(mesa.get(4));
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
 		Collections.sort(todasCartas);
@@ -409,7 +448,13 @@ public class Poker {
 	}
 
 	public static boolean doblesParejas(Jugador gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=mesa;
+		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
+		todasCartas.clear();
+		todasCartas.add(mesa.get(0));
+		todasCartas.add(mesa.get(1));
+		todasCartas.add(mesa.get(2));
+		todasCartas.add(mesa.get(3));
+		todasCartas.add(mesa.get(4));
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
 		Collections.sort(todasCartas);
@@ -444,7 +489,13 @@ public class Poker {
 	}
 
 	public static boolean pareja(Jugador gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=mesa;
+		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
+		todasCartas.clear();
+		todasCartas.add(mesa.get(0));
+		todasCartas.add(mesa.get(1));
+		todasCartas.add(mesa.get(2));
+		todasCartas.add(mesa.get(3));
+		todasCartas.add(mesa.get(4));
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
 		Collections.sort(todasCartas);
@@ -484,5 +535,4 @@ public class Poker {
 		todasCartas.add(gamer.getCarta2());
 		return false;
 	}
-
 }
