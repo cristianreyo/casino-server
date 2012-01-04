@@ -3,6 +3,7 @@ package pruebaPoker_servidor;
 import general.Carta;
 
 import java.util.*;
+
 import javax.swing.*;
 
 public class Poker {
@@ -51,13 +52,152 @@ public class Poker {
 		Vector<Carta> todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
-		return false;
+		Collections.sort(todasCartas);
+		Carta c1=todasCartas.get(0);
+		Carta c2=todasCartas.get(1);
+		Carta c3=todasCartas.get(2);
+		Carta c4=todasCartas.get(3);
+		Carta c5=todasCartas.get(4);
+		Carta c6=todasCartas.get(5);
+		Carta c7=todasCartas.get(6);
+		if(c1.getNumero().compareTo("UNO")==0&&c2.getNumero().compareTo("DOS")==0&&c3.getNumero().compareTo("TRES")==0&&c4.getNumero().compareTo("CUATRO")==0&&c5.getNumero().compareTo("CINCO")==0
+				&& c1.getPalo().compareTo(c2.getPalo())==0&& c1.getPalo().compareTo(c3.getPalo())==0&& c1.getPalo().compareTo(c4.getPalo())==0&& c1.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("DOS")==0&&c2.getNumero().compareTo("TRES")==0&&c3.getNumero().compareTo("CUATRO")==0&&c4.getNumero().compareTo("CINCO")==0&&c5.getNumero().compareTo("SEIS")==0
+				&& c1.getPalo().compareTo(c2.getPalo())==0&& c1.getPalo().compareTo(c3.getPalo())==0&& c1.getPalo().compareTo(c4.getPalo())==0&& c1.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("TRES")==0&&c2.getNumero().compareTo("CUATRO")==0&&c3.getNumero().compareTo("CINCO")==0&&c4.getNumero().compareTo("SEIS")==0&&c5.getNumero().compareTo("SIETE")==0
+				&& c1.getPalo().compareTo(c2.getPalo())==0&& c1.getPalo().compareTo(c3.getPalo())==0&& c1.getPalo().compareTo(c4.getPalo())==0&& c1.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("CUATRO")==0&&c2.getNumero().compareTo("CINCO")==0&&c3.getNumero().compareTo("SEIS")==0&&c4.getNumero().compareTo("SIETE")==0&&c5.getNumero().compareTo("OCHO")==0
+				&& c1.getPalo().compareTo(c2.getPalo())==0&& c1.getPalo().compareTo(c3.getPalo())==0&& c1.getPalo().compareTo(c4.getPalo())==0&& c1.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("CINCO")==0&&c2.getNumero().compareTo("SEIS")==0&&c3.getNumero().compareTo("SIETE")==0&&c4.getNumero().compareTo("OCHO")==0&&c5.getNumero().compareTo("NUEVE")==0
+				&& c1.getPalo().compareTo(c2.getPalo())==0&& c1.getPalo().compareTo(c3.getPalo())==0&& c1.getPalo().compareTo(c4.getPalo())==0&& c1.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("SEIS")==0&&c2.getNumero().compareTo("SIETE")==0&&c3.getNumero().compareTo("OCHO")==0&&c4.getNumero().compareTo("NUEVE")==0&&c5.getNumero().compareTo("DIEZ")==0
+				&& c1.getPalo().compareTo(c2.getPalo())==0&& c1.getPalo().compareTo(c3.getPalo())==0&& c1.getPalo().compareTo(c4.getPalo())==0&& c1.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("SIETE")==0&&c2.getNumero().compareTo("OCHO")==0&&c3.getNumero().compareTo("NUEVE")==0&&c4.getNumero().compareTo("DIEZ")==0&&c5.getNumero().compareTo("J")==0
+				&& c1.getPalo().compareTo(c2.getPalo())==0&& c1.getPalo().compareTo(c3.getPalo())==0&& c1.getPalo().compareTo(c4.getPalo())==0&& c1.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("OCHO")==0&&c2.getNumero().compareTo("NUEVE")==0&&c3.getNumero().compareTo("DIEZ")==0&&c4.getNumero().compareTo("J")==0&&c5.getNumero().compareTo("Q")==0
+				&& c1.getPalo().compareTo(c2.getPalo())==0&& c1.getPalo().compareTo(c3.getPalo())==0&& c1.getPalo().compareTo(c4.getPalo())==0&& c1.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("NUEVE")==0&&c2.getNumero().compareTo("DIEZ")==0&&c3.getNumero().compareTo("J")==0&&c4.getNumero().compareTo("Q")==0&&c5.getNumero().compareTo("K")==0
+				&& c1.getPalo().compareTo(c2.getPalo())==0&& c1.getPalo().compareTo(c3.getPalo())==0&& c1.getPalo().compareTo(c4.getPalo())==0&& c1.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		//
+		if(c2.getNumero().compareTo("UNO")==0&&c3.getNumero().compareTo("DOS")==0&&c4.getNumero().compareTo("TRES")==0&&c5.getNumero().compareTo("CUATRO")==0&&c6.getNumero().compareTo("CINCO")==0
+				&& c2.getPalo().compareTo(c6.getPalo())==0&& c2.getPalo().compareTo(c3.getPalo())==0&& c2.getPalo().compareTo(c4.getPalo())==0&& c2.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("DOS")==0&&c3.getNumero().compareTo("TRES")==0&&c4.getNumero().compareTo("CUATRO")==0&&c5.getNumero().compareTo("CINCO")==0&&c6.getNumero().compareTo("SEIS")==0
+				&& c2.getPalo().compareTo(c6.getPalo())==0&& c2.getPalo().compareTo(c3.getPalo())==0&& c2.getPalo().compareTo(c4.getPalo())==0&& c2.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("TRES")==0&&c3.getNumero().compareTo("CUATRO")==0&&c4.getNumero().compareTo("CINCO")==0&&c5.getNumero().compareTo("SEIS")==0&&c6.getNumero().compareTo("SIETE")==0
+				&& c2.getPalo().compareTo(c6.getPalo())==0&& c2.getPalo().compareTo(c3.getPalo())==0&& c2.getPalo().compareTo(c4.getPalo())==0&& c2.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("CUATRO")==0&&c3.getNumero().compareTo("CINCO")==0&&c4.getNumero().compareTo("SEIS")==0&&c5.getNumero().compareTo("SIETE")==0&&c6.getNumero().compareTo("OCHO")==0
+				&& c2.getPalo().compareTo(c6.getPalo())==0&& c2.getPalo().compareTo(c3.getPalo())==0&& c2.getPalo().compareTo(c4.getPalo())==0&& c2.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("CINCO")==0&&c3.getNumero().compareTo("SEIS")==0&&c4.getNumero().compareTo("SIETE")==0&&c5.getNumero().compareTo("OCHO")==0&&c6.getNumero().compareTo("NUEVE")==0
+				&& c2.getPalo().compareTo(c6.getPalo())==0&& c2.getPalo().compareTo(c3.getPalo())==0&& c2.getPalo().compareTo(c4.getPalo())==0&& c2.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("SEIS")==0&&c3.getNumero().compareTo("SIETE")==0&&c4.getNumero().compareTo("OCHO")==0&&c5.getNumero().compareTo("NUEVE")==0&&c6.getNumero().compareTo("DIEZ")==0
+				&& c2.getPalo().compareTo(c6.getPalo())==0&& c2.getPalo().compareTo(c3.getPalo())==0&& c2.getPalo().compareTo(c4.getPalo())==0&& c2.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("SIETE")==0&&c3.getNumero().compareTo("OCHO")==0&&c4.getNumero().compareTo("NUEVE")==0&&c5.getNumero().compareTo("DIEZ")==0&&c6.getNumero().compareTo("J")==0
+				&& c2.getPalo().compareTo(c6.getPalo())==0&& c2.getPalo().compareTo(c3.getPalo())==0&& c2.getPalo().compareTo(c4.getPalo())==0&& c2.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("OCHO")==0&&c3.getNumero().compareTo("NUEVE")==0&&c4.getNumero().compareTo("DIEZ")==0&&c5.getNumero().compareTo("J")==0&&c6.getNumero().compareTo("Q")==0
+				&& c2.getPalo().compareTo(c6.getPalo())==0&& c2.getPalo().compareTo(c3.getPalo())==0&& c2.getPalo().compareTo(c4.getPalo())==0&& c2.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("NUEVE")==0&&c3.getNumero().compareTo("DIEZ")==0&&c4.getNumero().compareTo("J")==0&&c5.getNumero().compareTo("Q")==0&&c6.getNumero().compareTo("K")==0
+				&& c2.getPalo().compareTo(c6.getPalo())==0&& c2.getPalo().compareTo(c3.getPalo())==0&& c2.getPalo().compareTo(c4.getPalo())==0&& c2.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		//
+		if(c3.getNumero().compareTo("UNO")==0&&c4.getNumero().compareTo("DOS")==0&&c5.getNumero().compareTo("TRES")==0&&c6.getNumero().compareTo("CUATRO")==0&&c7.getNumero().compareTo("CINCO")==0
+				&& c3.getPalo().compareTo(c6.getPalo())==0&& c3.getPalo().compareTo(c7.getPalo())==0&& c3.getPalo().compareTo(c4.getPalo())==0&& c3.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("DOS")==0&&c4.getNumero().compareTo("TRES")==0&&c5.getNumero().compareTo("CUATRO")==0&&c6.getNumero().compareTo("CINCO")==0&&c7.getNumero().compareTo("SEIS")==0
+				&& c3.getPalo().compareTo(c6.getPalo())==0&& c3.getPalo().compareTo(c7.getPalo())==0&& c3.getPalo().compareTo(c4.getPalo())==0&& c3.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("TRES")==0&&c4.getNumero().compareTo("CUATRO")==0&&c5.getNumero().compareTo("CINCO")==0&&c6.getNumero().compareTo("SEIS")==0&&c7.getNumero().compareTo("SIETE")==0
+				&& c3.getPalo().compareTo(c6.getPalo())==0&& c3.getPalo().compareTo(c7.getPalo())==0&& c3.getPalo().compareTo(c4.getPalo())==0&& c3.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("CUATRO")==0&&c4.getNumero().compareTo("CINCO")==0&&c5.getNumero().compareTo("SEIS")==0&&c6.getNumero().compareTo("SIETE")==0&&c7.getNumero().compareTo("OCHO")==0
+				&& c3.getPalo().compareTo(c6.getPalo())==0&& c3.getPalo().compareTo(c7.getPalo())==0&& c3.getPalo().compareTo(c4.getPalo())==0&& c3.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("CINCO")==0&&c4.getNumero().compareTo("SEIS")==0&&c5.getNumero().compareTo("SIETE")==0&&c6.getNumero().compareTo("OCHO")==0&&c7.getNumero().compareTo("NUEVE")==0
+				&& c3.getPalo().compareTo(c6.getPalo())==0&& c3.getPalo().compareTo(c7.getPalo())==0&& c3.getPalo().compareTo(c4.getPalo())==0&& c3.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("SEIS")==0&&c4.getNumero().compareTo("SIETE")==0&&c5.getNumero().compareTo("OCHO")==0&&c6.getNumero().compareTo("NUEVE")==0&&c7.getNumero().compareTo("DIEZ")==0
+				&& c3.getPalo().compareTo(c6.getPalo())==0&& c3.getPalo().compareTo(c7.getPalo())==0&& c3.getPalo().compareTo(c4.getPalo())==0&& c3.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("SIETE")==0&&c4.getNumero().compareTo("OCHO")==0&&c5.getNumero().compareTo("NUEVE")==0&&c6.getNumero().compareTo("DIEZ")==0&&c7.getNumero().compareTo("J")==0
+				&& c3.getPalo().compareTo(c6.getPalo())==0&& c3.getPalo().compareTo(c7.getPalo())==0&& c3.getPalo().compareTo(c4.getPalo())==0&& c3.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("OCHO")==0&&c4.getNumero().compareTo("NUEVE")==0&&c5.getNumero().compareTo("DIEZ")==0&&c6.getNumero().compareTo("J")==0&&c7.getNumero().compareTo("Q")==0
+				&& c3.getPalo().compareTo(c6.getPalo())==0&& c3.getPalo().compareTo(c7.getPalo())==0&& c3.getPalo().compareTo(c4.getPalo())==0&& c3.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("NUEVE")==0&&c4.getNumero().compareTo("DIEZ")==0&&c5.getNumero().compareTo("J")==0&&c6.getNumero().compareTo("Q")==0&&c7.getNumero().compareTo("K")==0
+				&& c3.getPalo().compareTo(c6.getPalo())==0&& c3.getPalo().compareTo(c7.getPalo())==0&& c3.getPalo().compareTo(c4.getPalo())==0&& c3.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else
+			return false;
 	}
 
 	public static boolean poker(Jugador gamer, Vector<Carta> mesa) {
 		Vector<Carta> todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
+		Collections.sort(todasCartas);
+		Carta c1=todasCartas.get(0);
+		Carta c2=todasCartas.get(1);
+		Carta c3=todasCartas.get(2);
+		Carta c4=todasCartas.get(3);
+		Carta c5=todasCartas.get(4);
+		Carta c6=todasCartas.get(5);
+		Carta c7=todasCartas.get(6);
+		if(c1.getNumero().compareTo(c2.getNumero())==0&&c1.getNumero().compareTo(c3.getNumero())==0&&c1.getNumero().compareTo(c4.getNumero())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo(c3.getNumero())==0&&c2.getNumero().compareTo(c4.getNumero())==0&&c2.getNumero().compareTo(c5.getNumero())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo(c4.getNumero())==0&&c3.getNumero().compareTo(c5.getNumero())==0&&c3.getNumero().compareTo(c6.getNumero())==0){
+			return true;
+		}
+		else if(c4.getNumero().compareTo(c5.getNumero())==0&&c4.getNumero().compareTo(c6.getNumero())==0&&c4.getNumero().compareTo(c7.getNumero())==0){
+			return true;
+		}
 		return false;
 	}
 
@@ -65,6 +205,29 @@ public class Poker {
 		Vector<Carta> todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
+		Collections.sort(todasCartas);
+		Carta c1=todasCartas.get(0);
+		Carta c2=todasCartas.get(1);
+		Carta c3=todasCartas.get(2);
+		Carta c4=todasCartas.get(3);
+		Carta c5=todasCartas.get(4);
+		Carta c6=todasCartas.get(5);
+		Carta c7=todasCartas.get(6);
+		if(c1.getNumero().compareTo(c2.getNumero())==0&&c1.getNumero().compareTo(c3.getNumero())==0 &&(c4.getNumero().compareTo(c5.getNumero())==0||c5.getNumero().compareTo(c6.getNumero())==0||c6.getNumero().compareTo(c7.getNumero())==0)){
+			return true;
+		}
+		else if(c2.getNumero().compareTo(c3.getNumero())==0&&c2.getNumero().compareTo(c4.getNumero())==0 &&(c5.getNumero().compareTo(c6.getNumero())==0||c6.getNumero().compareTo(c7.getNumero())==0)){
+			return true;
+		}
+		else if(c3.getNumero().compareTo(c4.getNumero())==0&&c3.getNumero().compareTo(c5.getNumero())==0&&(c1.getNumero().compareTo(c2.getNumero())==0||c6.getNumero().compareTo(c7.getNumero())==0)){
+			return true;
+		}
+		else if(c4.getNumero().compareTo(c5.getNumero())==0&&c4.getNumero().compareTo(c6.getNumero())==0&&(c1.getNumero().compareTo(c2.getNumero())==0||c2.getNumero().compareTo(c3.getNumero())==0)){
+			return true;
+		}
+		else if(c5.getNumero().compareTo(c6.getNumero())==0&&c5.getNumero().compareTo(c7.getNumero())==0&&(c1.getNumero().compareTo(c2.getNumero())==0||c2.getNumero().compareTo(c3.getNumero())==0||c3.getNumero().compareTo(c4.getNumero())==0)){
+			return true;
+		}
 		return false;
 	}
 
@@ -72,6 +235,47 @@ public class Poker {
 		Vector<Carta> todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
+		Collections.sort(todasCartas);
+		Carta c1=todasCartas.get(0);
+		Carta c2=todasCartas.get(1);
+		Carta c3=todasCartas.get(2);
+		Carta c4=todasCartas.get(3);
+		Carta c5=todasCartas.get(4);
+		Carta c6=todasCartas.get(5);
+		Carta c7=todasCartas.get(6);
+		if(c1.getPalo().compareTo(c2.getPalo())==0&&c1.getPalo().compareTo(c3.getPalo())==0&&c1.getPalo().compareTo(c4.getPalo())==0&&c1.getPalo().compareTo(c5.getPalo())==0){
+			return true;
+		}
+		else if(c1.getPalo().compareTo(c2.getPalo())==0&&c1.getPalo().compareTo(c3.getPalo())==0&&c1.getPalo().compareTo(c4.getPalo())==0&&c1.getPalo().compareTo(c6.getPalo())==0){
+			return true;
+		}
+		else if(c1.getPalo().compareTo(c2.getPalo())==0&&c1.getPalo().compareTo(c3.getPalo())==0&&c1.getPalo().compareTo(c4.getPalo())==0&&c1.getPalo().compareTo(c7.getPalo())==0){
+			return true;
+		}
+		else if(c1.getPalo().compareTo(c2.getPalo())==0&&c1.getPalo().compareTo(c3.getPalo())==0&&c1.getPalo().compareTo(c5.getPalo())==0&&c1.getPalo().compareTo(c6.getPalo())==0){
+			return true;
+		}
+		else if(c1.getPalo().compareTo(c2.getPalo())==0&&c1.getPalo().compareTo(c3.getPalo())==0&&c1.getPalo().compareTo(c5.getPalo())==0&&c1.getPalo().compareTo(c7.getPalo())==0){
+			return true;
+		}
+		else if(c1.getPalo().compareTo(c2.getPalo())==0&&c1.getPalo().compareTo(c4.getPalo())==0&&c1.getPalo().compareTo(c5.getPalo())==0&&c1.getPalo().compareTo(c6.getPalo())==0){
+			return true;
+		}
+		else if(c1.getPalo().compareTo(c2.getPalo())==0&&c1.getPalo().compareTo(c4.getPalo())==0&&c1.getPalo().compareTo(c5.getPalo())==0&&c1.getPalo().compareTo(c7.getPalo())==0){
+			return true;
+		}
+		else if(c1.getPalo().compareTo(c3.getPalo())==0&&c1.getPalo().compareTo(c4.getPalo())==0&&c1.getPalo().compareTo(c5.getPalo())==0&&c1.getPalo().compareTo(c6.getPalo())==0){
+			return true;
+		}
+		else if(c1.getPalo().compareTo(c3.getPalo())==00&&c1.getPalo().compareTo(c4.getPalo())==0&&c1.getPalo().compareTo(c5.getPalo())==0&&c1.getPalo().compareTo(c7.getPalo())==0){
+			return true;
+		}
+		else if(c2.getPalo().compareTo(c3.getPalo())==0&&c2.getPalo().compareTo(c4.getPalo())==0&&c2.getPalo().compareTo(c5.getPalo())==0&&c2.getPalo().compareTo(c6.getPalo())==0){
+			return true;
+		}
+		else if(c2.getPalo().compareTo(c3.getPalo())==0&&c2.getPalo().compareTo(c4.getPalo())==0&&c2.getPalo().compareTo(c5.getPalo())==0&&c2.getPalo().compareTo(c7.getPalo())==0){
+			return true;
+		}
 		return false;
 	}
 
@@ -79,28 +283,199 @@ public class Poker {
 		Vector<Carta> todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
-		return false;
+		Carta c1=todasCartas.get(0);
+		Carta c2=todasCartas.get(1);
+		Carta c3=todasCartas.get(2);
+		Carta c4=todasCartas.get(3);
+		Carta c5=todasCartas.get(4);
+		Carta c6=todasCartas.get(5);
+		Carta c7=todasCartas.get(6);
+		if(c1.getNumero().compareTo("UNO")==0&&c2.getNumero().compareTo("DOS")==0&&c3.getNumero().compareTo("TRES")==0&&c4.getNumero().compareTo("CUATRO")==0&&c5.getNumero().compareTo("CINCO")==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("DOS")==0&&c2.getNumero().compareTo("TRES")==0&&c3.getNumero().compareTo("CUATRO")==0&&c4.getNumero().compareTo("CINCO")==0&&c5.getNumero().compareTo("SEIS")==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("TRES")==0&&c2.getNumero().compareTo("CUATRO")==0&&c3.getNumero().compareTo("CINCO")==0&&c4.getNumero().compareTo("SEIS")==0&&c5.getNumero().compareTo("SIETE")==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("CUATRO")==0&&c2.getNumero().compareTo("CINCO")==0&&c3.getNumero().compareTo("SEIS")==0&&c4.getNumero().compareTo("SIETE")==0&&c5.getNumero().compareTo("OCHO")==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("CINCO")==0&&c2.getNumero().compareTo("SEIS")==0&&c3.getNumero().compareTo("SIETE")==0&&c4.getNumero().compareTo("OCHO")==0&&c5.getNumero().compareTo("NUEVE")==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("SEIS")==0&&c2.getNumero().compareTo("SIETE")==0&&c3.getNumero().compareTo("OCHO")==0&&c4.getNumero().compareTo("NUEVE")==0&&c5.getNumero().compareTo("DIEZ")==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("SIETE")==0&&c2.getNumero().compareTo("OCHO")==0&&c3.getNumero().compareTo("NUEVE")==0&&c4.getNumero().compareTo("DIEZ")==0&&c5.getNumero().compareTo("J")==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("OCHO")==0&&c2.getNumero().compareTo("NUEVE")==0&&c3.getNumero().compareTo("DIEZ")==0&&c4.getNumero().compareTo("J")==0&&c5.getNumero().compareTo("Q")==0){
+			return true;
+		}
+		else if(c1.getNumero().compareTo("NUEVE")==0&&c2.getNumero().compareTo("DIEZ")==0&&c3.getNumero().compareTo("J")==0&&c4.getNumero().compareTo("Q")==0&&c5.getNumero().compareTo("K")==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("UNO")==0&&c3.getNumero().compareTo("DOS")==0&&c4.getNumero().compareTo("TRES")==0&&c5.getNumero().compareTo("CUATRO")==0&&c6.getNumero().compareTo("CINCO")==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("DOS")==0&&c3.getNumero().compareTo("TRES")==0&&c4.getNumero().compareTo("CUATRO")==0&&c5.getNumero().compareTo("CINCO")==0&&c6.getNumero().compareTo("SEIS")==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("TRES")==0&&c3.getNumero().compareTo("CUATRO")==0&&c4.getNumero().compareTo("CINCO")==0&&c5.getNumero().compareTo("SEIS")==0&&c6.getNumero().compareTo("SIETE")==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("CUATRO")==0&&c3.getNumero().compareTo("CINCO")==0&&c4.getNumero().compareTo("SEIS")==0&&c5.getNumero().compareTo("SIETE")==0&&c6.getNumero().compareTo("OCHO")==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("CINCO")==0&&c3.getNumero().compareTo("SEIS")==0&&c4.getNumero().compareTo("SIETE")==0&&c5.getNumero().compareTo("OCHO")==0&&c6.getNumero().compareTo("NUEVE")==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("SEIS")==0&&c3.getNumero().compareTo("SIETE")==0&&c4.getNumero().compareTo("OCHO")==0&&c5.getNumero().compareTo("NUEVE")==0&&c6.getNumero().compareTo("DIEZ")==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("SIETE")==0&&c3.getNumero().compareTo("OCHO")==0&&c4.getNumero().compareTo("NUEVE")==0&&c5.getNumero().compareTo("DIEZ")==0&&c6.getNumero().compareTo("J")==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("OCHO")==0&&c3.getNumero().compareTo("NUEVE")==0&&c4.getNumero().compareTo("DIEZ")==0&&c5.getNumero().compareTo("J")==0&&c6.getNumero().compareTo("Q")==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo("NUEVE")==0&&c3.getNumero().compareTo("DIEZ")==0&&c4.getNumero().compareTo("J")==0&&c5.getNumero().compareTo("Q")==0&&c6.getNumero().compareTo("K")==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("UNO")==0&&c4.getNumero().compareTo("DOS")==0&&c5.getNumero().compareTo("TRES")==0&&c6.getNumero().compareTo("CUATRO")==0&&c7.getNumero().compareTo("CINCO")==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("DOS")==0&&c4.getNumero().compareTo("TRES")==0&&c5.getNumero().compareTo("CUATRO")==0&&c6.getNumero().compareTo("CINCO")==0&&c7.getNumero().compareTo("SEIS")==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("TRES")==0&&c4.getNumero().compareTo("CUATRO")==0&&c5.getNumero().compareTo("CINCO")==0&&c6.getNumero().compareTo("SEIS")==0&&c7.getNumero().compareTo("SIETE")==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("CUATRO")==0&&c4.getNumero().compareTo("CINCO")==0&&c5.getNumero().compareTo("SEIS")==0&&c6.getNumero().compareTo("SIETE")==0&&c7.getNumero().compareTo("OCHO")==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("CINCO")==0&&c4.getNumero().compareTo("SEIS")==0&&c5.getNumero().compareTo("SIETE")==0&&c6.getNumero().compareTo("OCHO")==0&&c7.getNumero().compareTo("NUEVE")==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("SEIS")==0&&c4.getNumero().compareTo("SIETE")==0&&c5.getNumero().compareTo("OCHO")==0&&c6.getNumero().compareTo("NUEVE")==0&&c7.getNumero().compareTo("DIEZ")==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("SIETE")==0&&c4.getNumero().compareTo("OCHO")==0&&c5.getNumero().compareTo("NUEVE")==0&&c6.getNumero().compareTo("DIEZ")==0&&c7.getNumero().compareTo("J")==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("OCHO")==0&&c4.getNumero().compareTo("NUEVE")==0&&c5.getNumero().compareTo("DIEZ")==0&&c6.getNumero().compareTo("J")==0&&c7.getNumero().compareTo("Q")==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo("NUEVE")==0&&c4.getNumero().compareTo("DIEZ")==0&&c5.getNumero().compareTo("J")==0&&c6.getNumero().compareTo("Q")==0&&c7.getNumero().compareTo("K")==0){
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public static boolean trio(Jugador gamer, Vector<Carta> mesa) {
 		Vector<Carta> todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
-		return false;
+		Collections.sort(todasCartas);
+		Carta c1=todasCartas.get(0);
+		Carta c2=todasCartas.get(1);
+		Carta c3=todasCartas.get(2);
+		Carta c4=todasCartas.get(3);
+		Carta c5=todasCartas.get(4);
+		Carta c6=todasCartas.get(5);
+		Carta c7=todasCartas.get(6);
+		if(c1.getNumero().compareTo(c2.getNumero())==0&&c1.getNumero().compareTo(c3.getNumero())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo(c3.getNumero())==0&&c2.getNumero().compareTo(c4.getNumero())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo(c4.getNumero())==0&&c3.getNumero().compareTo(c5.getNumero())==0){
+			return true;
+		}
+		else if(c4.getNumero().compareTo(c5.getNumero())==0&&c4.getNumero().compareTo(c6.getNumero())==0){
+			return true;
+		}
+		else if(c5.getNumero().compareTo(c6.getNumero())==0&&c5.getNumero().compareTo(c7.getNumero())==0){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public static boolean doblesParejas(Jugador gamer, Vector<Carta> mesa) {
 		Vector<Carta> todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
-		return false;
+		Collections.sort(todasCartas);
+		Carta c1=todasCartas.get(0);
+		Carta c2=todasCartas.get(1);
+		Carta c3=todasCartas.get(2);
+		Carta c4=todasCartas.get(3);
+		Carta c5=todasCartas.get(4);
+		Carta c6=todasCartas.get(5);
+		Carta c7=todasCartas.get(6);
+		if(c1.getNumero().compareTo(c2.getNumero())==0&&(c3.getNumero().compareTo(c4.getNumero())==0||c4.getNumero().compareTo(c5.getNumero())==0||c5.getNumero().compareTo(c6.getNumero())==0||c6.getNumero().compareTo(c7.getNumero())==0)){
+			return true;
+		}
+		else if(c2.getNumero().compareTo(c3.getNumero())==0&&(c4.getNumero().compareTo(c5.getNumero())==0||c5.getNumero().compareTo(c6.getNumero())==0||c6.getNumero().compareTo(c7.getNumero())==0)){
+			return true;
+		}
+		else if(c3.getNumero().compareTo(c4.getNumero())==0&&(c1.getNumero().compareTo(c2.getNumero())==0||c5.getNumero().compareTo(c6.getNumero())==0||c6.getNumero().compareTo(c7.getNumero())==0)){
+			return true;
+		}
+		else if(c4.getNumero().compareTo(c5.getNumero())==0&&(c1.getNumero().compareTo(c2.getNumero())==0||c2.getNumero().compareTo(c3.getNumero())==0||c6.getNumero().compareTo(c7.getNumero())==0)){
+			return true;
+		}
+		else if(c5.getNumero().compareTo(c6.getNumero())==0&&(c1.getNumero().compareTo(c2.getNumero())==0||c2.getNumero().compareTo(c3.getNumero())==0||c3.getNumero().compareTo(c4.getNumero())==0)){
+			return true;
+		}
+		else if(c6.getNumero().compareTo(c7.getNumero())==0&&(c1.getNumero().compareTo(c2.getNumero())==0||c2.getNumero().compareTo(c3.getNumero())==0||c3.getNumero().compareTo(c4.getNumero())==0||c4.getNumero().compareTo(c5.getNumero())==0)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public static boolean pareja(Jugador gamer, Vector<Carta> mesa) {
 		Vector<Carta> todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
-		return false;
+		Collections.sort(todasCartas);
+		Carta c1=todasCartas.get(0);
+		Carta c2=todasCartas.get(1);
+		Carta c3=todasCartas.get(2);
+		Carta c4=todasCartas.get(3);
+		Carta c5=todasCartas.get(4);
+		Carta c6=todasCartas.get(5);
+		Carta c7=todasCartas.get(6);
+		if(c1.getNumero().compareTo(c2.getNumero())==0){
+			return true;
+		}
+		else if(c2.getNumero().compareTo(c3.getNumero())==0){
+			return true;
+		}
+		else if(c3.getNumero().compareTo(c4.getNumero())==0){
+			return true;
+		}
+		else if(c4.getNumero().compareTo(c5.getNumero())==0){
+			return true;
+		}
+		else if(c5.getNumero().compareTo(c6.getNumero())==0){
+			return true;
+		}
+		else if(c6.getNumero().compareTo(c7.getNumero())==0){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public static boolean cartaAlta(Jugador gamer, Vector<Carta> mesa) {
