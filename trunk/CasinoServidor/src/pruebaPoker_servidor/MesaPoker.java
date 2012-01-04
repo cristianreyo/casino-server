@@ -33,9 +33,9 @@ public class MesaPoker extends Thread {
 			mesa.clear();//Limpio la mesa de cartas
 			b.barajar();//Se baraja otra vez la baraja
 			apuestas.clear();//Limpio el vector de apuestas
-			mesa.add(b.getCarta(0));//Se obtiene la 1� carta
-			mesa.add(b.getCarta(1));//Se obtiene la 2� carta
-			mesa.add(b.getCarta(2));//Se obtiene la 3� carta
+			mesa.add(b.getCarta(0));//Se obtiene la 1º carta
+			mesa.add(b.getCarta(1));//Se obtiene la 2º carta
+			mesa.add(b.getCarta(2));//Se obtiene la 3º carta
 			jugadores.clear();//Se limpia el vector de jugadores
 			jugadores=(Vector<Jugador>) jugadoress.clone();	 //Se clona el vector de jugadores
 			//Envio las tres cartas de base
@@ -66,11 +66,11 @@ public class MesaPoker extends Thread {
 				k.enviarCartas(mesa);
 			}
 			
-			//En este bucle actualizo las apuestas no las a�ado
+			//En este bucle actualizo las apuestas no las añado
 			for (Jugador l:jugadores){
 				apuesta=l.obtenerApuesta();//Este metodo tambian asigna la apuesta con el set
 				int pos=jugadores.indexOf(l);//Busco la posicion del jugador que estoy iterando
-				int acum=apuestas.get(pos);//Guardo lo que apost� en la jugada anterior
+				int acum=apuestas.get(pos);//Guardo lo que apostó en la jugada anterior
 				apuestas.set(pos, acum+apuesta);//Lo cambio, porque la apuesta es acumulativa
 			}
 			
@@ -82,11 +82,11 @@ public class MesaPoker extends Thread {
 				k.enviarCartas(mesa);
 			}
 			
-			//En este bucle actualizo las apuestas no las a�ado
+			//En este bucle actualizo las apuestas no las añado
 			for (Jugador l:jugadores){
 				apuesta=l.obtenerApuesta();//Este metodo tambian asigna la apuesta con el set
 				int pos=jugadores.indexOf(l);//Busco la posicion del jugador que estoy iterando
-				int acum=apuestas.get(pos);//Guardo lo que apost� en la jugada anterior
+				int acum=apuestas.get(pos);//Guardo lo que apostó en la jugada anterior
 				apuestas.set(pos, acum+apuesta);//Lo cambio, porque la apuesta es acumulativa
 			}
 			
@@ -102,8 +102,7 @@ public class MesaPoker extends Thread {
 			
 			//Informo a todos los jugadores que ha ganado el jugador X
 			for(Jugador t:jugadores){
-				t.informarVictoria(jugadoress.get(0).getCliente().getPort());
-//				t.informarVictoria(ganador.getCliente().getPort());
+				t.informarVictoria(ganador.getCliente().getPort());
 			}
 			
 		}
@@ -166,11 +165,20 @@ public class MesaPoker extends Thread {
 	 * @return
 	 */
 	private int calcularMax() {
-		return 0;
+		int max=0;
+		int pos=0;
+		Jugador aux;
+		for(int i=0; i<jugadoress.size();i++){
+			aux=jugadoress.get(i);
+			if(max<aux.getValorJugada()){
+				pos=i;
+			}
+		}
+		return pos;
 	}
 	
 	/**
-	 * Metodo que a�ade un jugador al vector de jugadores
+	 * Metodo que añade un jugador al vector de jugadores
 	 * @param cliente. Es el socket del jugador nuevo
 	 */
 	public void anadir(Socket cliente) {
