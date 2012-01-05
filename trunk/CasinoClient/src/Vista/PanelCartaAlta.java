@@ -134,7 +134,7 @@ public class PanelCartaAlta extends javax.swing.JPanel implements Observer {
             }
         });
 
-        LabelCarta.setIcon(new ImageIcon("Recursos/trasera.jpg") );
+        LabelCarta.setIcon(new ImageIcon("Recursos/trasera.jpg"));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -156,9 +156,9 @@ public class PanelCartaAlta extends javax.swing.JPanel implements Observer {
                     .add(BotonJugar)
                     .add(layout.createSequentialGroup()
                         .add(BotonOtra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(244, 244, 244)
-                        .add(LabelCarta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(94, 94, 94))
+                        .add(305, 305, 305)
+                        .add(LabelCarta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -183,9 +183,9 @@ public class PanelCartaAlta extends javax.swing.JPanel implements Observer {
                                     .add(BotonOtra)
                                     .add(apuesta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
                     .add(layout.createSequentialGroup()
-                        .add(115, 115, 115)
-                        .add(LabelCarta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 116, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(369, Short.MAX_VALUE))
+                        .add(107, 107, 107)
+                        .add(LabelCarta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 265, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -199,7 +199,7 @@ private void puntuacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void BotonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonJugarActionPerformed
     int a = (Integer) this.apuesta.getValue();
-    controller.CartaAlta(a);
+    controller.CartaAlta(a,this.LabelCarta);
     this.BotonOtra.setVisible(true);
     this.BotonJugar.setVisible(false);//oculto el boton
     

@@ -65,4 +65,8 @@ public class Carta_CartaAlta implements Serializable{
         return serialVersionUID;
     }
     
+    
+    public String getRutaImage(){
+        return "Recursos/"+valor+"-"+tipo+".jpg";
+    }
 }

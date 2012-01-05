@@ -5,6 +5,8 @@
 package controlador;
 
 import Vista.CasinoView;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import juego.CartaMasAlta.Carta_CartaAlta;
 import modelo.Casino;
 
@@ -46,15 +48,18 @@ public class Controlador {
         this.casino.setMensaje(mensaje);
     }
     
-    public void CartaAlta(int ap){
+    public void CartaAlta(int ap, JLabel imagen_carta){
         Carta_CartaAlta carta;
         String msj;
+        
+        
         
         //ENVIO APUESTA
         this.casino.setApuesta(ap);                    
         
         //OBTENGO CARTA
         carta = this.casino.getCarta_CartaAlta();
+        imagen_carta.setIcon(new ImageIcon(carta.getRutaImage()) );
         
         //OBTENGO MENSAJE
         msj = this.casino.readMensaje();
@@ -68,6 +73,7 @@ public class Controlador {
         
         //ACTUALIZO LOS PUNTOS DEL JUGADOR
         casino.getJugador().setPuntos(Integer.parseInt(msj));
+        //imagen_carta.setIcon(new ImageIcon("Recursos/trasera.jpg") );
         
     }
     
