@@ -57,6 +57,9 @@ public class CartaMasAlta extends Juego {
 
                 //ENVIO CARTA A USUARIO
                 this.jugador.writeObject(card_jugador);
+                
+                //MUESTRO CARTA DEL CRUPIER
+                this.jugador.writeObject(card_crupier);
 
 
                 //COMPARO CARTAS Y COMPRUEBO GANADOR
