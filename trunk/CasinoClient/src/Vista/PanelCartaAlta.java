@@ -96,7 +96,8 @@ public class PanelCartaAlta extends javax.swing.JPanel implements Observer {
         apuesta = new javax.swing.JSpinner();
         BotonJugar = new javax.swing.JButton();
         BotonOtra = new javax.swing.JButton();
-        LabelCarta = new javax.swing.JLabel();
+        LabelCartaJugador = new javax.swing.JLabel();
+        LabelCartaCrupier = new javax.swing.JLabel();
 
         LabelJugador.setText("Jugador:");
 
@@ -134,30 +135,37 @@ public class PanelCartaAlta extends javax.swing.JPanel implements Observer {
             }
         });
 
-        LabelCarta.setIcon(new ImageIcon("Recursos/trasera.jpg"));
+        LabelCartaJugador.setIcon(new ImageIcon("Recursos/trasera.jpg"));
+
+        LabelCartaCrupier.setIcon(new ImageIcon("Recursos/trasera.jpg"));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(90, 90, 90)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(LabelApuesta)
-                    .add(LabelJugador)
-                    .add(LabelPuntos))
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                    .add(apuesta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(puntuacion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(nombreJugador, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 104, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .add(90, 90, 90)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(LabelApuesta)
+                            .add(LabelJugador)
+                            .add(LabelPuntos))
+                        .add(18, 18, 18)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
+                            .add(apuesta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(puntuacion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(nombreJugador, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 104, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(LabelCartaCrupier, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 215, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(BotonJugar)
                     .add(layout.createSequentialGroup()
                         .add(BotonOtra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(305, 305, 305)
-                        .add(LabelCarta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(LabelCartaJugador, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -181,11 +189,13 @@ public class PanelCartaAlta extends javax.swing.JPanel implements Observer {
                                 .add(1, 1, 1)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(BotonOtra)
-                                    .add(apuesta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
+                                    .add(apuesta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                        .add(38, 38, 38)
+                        .add(LabelCartaCrupier, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 237, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
                         .add(107, 107, 107)
-                        .add(LabelCarta, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 265, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(228, Short.MAX_VALUE))
+                        .add(LabelCartaJugador, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 265, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -199,7 +209,7 @@ private void puntuacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void BotonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonJugarActionPerformed
     int a = (Integer) this.apuesta.getValue();
-    controller.CartaAlta(a,this.LabelCarta);
+    controller.CartaAlta(a,this.LabelCartaJugador, this.LabelCartaCrupier);
     this.BotonOtra.setVisible(true);
     this.BotonJugar.setVisible(false);//oculto el boton
     
@@ -209,14 +219,16 @@ private void BotonOtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     this.BotonJugar.setVisible(true);
     this.BotonOtra.setVisible(false);
     casino.jugarDeNuevo();
-    this.LabelCarta.setIcon(new ImageIcon("Recursos/trasera.jpg") );
+    this.LabelCartaCrupier.setIcon(new ImageIcon("Recursos/trasera.jpg") );
+    this.LabelCartaJugador.setIcon(new ImageIcon("Recursos/trasera.jpg") );
 }//GEN-LAST:event_BotonOtraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonJugar;
     private javax.swing.JButton BotonOtra;
     private javax.swing.JLabel LabelApuesta;
-    private javax.swing.JLabel LabelCarta;
+    private javax.swing.JLabel LabelCartaCrupier;
+    private javax.swing.JLabel LabelCartaJugador;
     private javax.swing.JLabel LabelJugador;
     private javax.swing.JLabel LabelPuntos;
     private javax.swing.JSpinner apuesta;

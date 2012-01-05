@@ -48,7 +48,7 @@ public class Controlador {
         this.casino.setMensaje(mensaje);
     }
     
-    public void CartaAlta(int ap, JLabel imagen_carta){
+    public void CartaAlta(int ap, JLabel carta_usuario, JLabel carta_crupier){
         Carta_CartaAlta carta;
         String msj;
         
@@ -59,7 +59,12 @@ public class Controlador {
         
         //OBTENGO CARTA
         carta = this.casino.getCarta_CartaAlta();
-        imagen_carta.setIcon(new ImageIcon(carta.getRutaImage()) );
+        carta_usuario.setIcon(new ImageIcon(carta.getRutaImage()) );
+        
+        //OBTENGO CARTA DEL CRUPIER
+        carta = this.casino.getCarta_CartaAlta();
+        carta_crupier.setIcon(new ImageIcon(carta.getRutaImage()) );
+        
         
         //OBTENGO MENSAJE
         msj = this.casino.readMensaje();
