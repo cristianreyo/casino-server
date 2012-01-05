@@ -209,6 +209,7 @@ private void BotonOtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     this.BotonJugar.setVisible(true);
     this.BotonOtra.setVisible(false);
     casino.jugarDeNuevo();
+    this.LabelCarta.setIcon(new ImageIcon("Recursos/trasera.jpg") );
 }//GEN-LAST:event_BotonOtraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

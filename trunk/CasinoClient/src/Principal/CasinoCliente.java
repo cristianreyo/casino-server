@@ -5,6 +5,7 @@
 package Principal;
 
 
+
 import Vista.CasinoView;
 import controlador.Controlador;
 import modelo.Casino;
@@ -22,7 +23,8 @@ public class CasinoCliente {
           java.awt.EventQueue.invokeLater(new Runnable() {
             Casino casino = new Casino();         
             Controlador controlador = new Controlador(casino);
-            CasinoView view = new CasinoView(casino, controlador);
+            CasinoView view= new CasinoView(casino, controlador);
+            //CasinoView view = new CasinoView(casino, controlador);
             public void run() {
                 view.setVisible(true);
             }
