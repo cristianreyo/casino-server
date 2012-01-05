@@ -10,6 +10,13 @@
  */
 package Vista;
 
+import Vista.AboutView;
+import Vista.ConexionView;
+import Vista.IdiomaView;
+import Vista.PanelCartaAlta;
+import Vista.PanelLogin;
+import Vista.PanelSelectGame;
+import controlador.Controlador;
 import controlador.Controlador;
 import java.awt.CardLayout;
 import java.io.FileInputStream;
