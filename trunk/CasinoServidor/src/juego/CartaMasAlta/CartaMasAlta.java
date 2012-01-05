@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import juego.Juego;
 import juego.Jugador;
+import principal.DataBase;
 
 
 
@@ -21,64 +22,91 @@ import juego.Jugador;
  */
 public class CartaMasAlta extends Juego {
     
-    private Hashtable<Jugador,Integer> mano;
+    Jugador jugador;
     
     public CartaMasAlta(){
-        super("CartaMasAlta"); 
-        mano = new Hashtable<Jugador,Integer>();
+        super("CartaMasAlta");  
     }
 
     @Override
     public void run() {
         
-        Random rnd = new Random();
-        rnd.setSeed(3816);
-        int num;
         
-        for(int i=0;i<5;i++){
-            System.out.println("CartaMasAlta");
+        int apuesta;
+        Carta_CartaAlta card_jugador;
+        Carta_CartaAlta card_crupier;
+        Baraja_CartaAlta baraja = new Baraja_CartaAlta();
+        
+        System.out.println(this);
+        
+        jugador = this.jugadores.get(0);
+        System.out.println("Juagador: "+jugador);
+        
+        
+        try{
+            //LEO APUESTA
+            apuesta = (Integer) jugador.readObject();            
+            System.out.println("Apuesta: "+apuesta);
             
-            while(jugadores.size()<2)try {
-                sleep(1);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(CartaMasAlta.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            //reparto numeros aleatoriamente
-            for(Jugador j:jugadores){
-                num = rnd.nextInt(10);
-                mano.put(j, num);
-                try{
-                    j.writeObject(""+num);
-                }catch(IOException e){}
-            }
-            
-            //Busco el ganador
-            Jugador ganador=null;
-            for(Jugador j:jugadores){
-                if(ganador==null)
-                {
-                    ganador=j;
-                }else{
-                    if(mano.get(j) > mano.get(ganador))
-                        ganador=j;
-                }
-            }
+            //CREO DOS CARTAS
+            card_jugador = baraja.sacarCarta();
+            card_crupier = baraja.sacarCarta();
             
             
-            //Informo a los jugadores
-            for(Jugador j:jugadores){
-                try{
-                    if(ganador==j){
-                        j.writeObject("Ganas");
-                    }else{
-                        j.writeObject("pierdes");
-                    }
-                }catch(IOException e){}
+            //ENVIO CARTA A USUARIO
+            this.jugador.writeObject(card_jugador);
+            
+            
+            //ESPERO 5 segundos
+            try{
+                sleep(5000);
+            }catch(InterruptedException e){
+                e.printStackTrace();
             }
             
             
+            //COMPARO CARTAS Y COMPRUEBO GANADOR
+            if(card_crupier.getValor() > card_jugador.getValor()) //Jugador pierde
+            {
+                //ENVIO INFORMACION
+                this.jugador.writeObject("PIERDES");
+                apuesta = apuesta * (-1);
+                DataBase.addPuntos(jugador.getNombre(), jugador.getPassword(), apuesta);
+            }
+            else if(card_crupier.getValor() < card_jugador.getValor()) //Jug gna
+            {
+                //ENVIO INFORMACION
+                this.jugador.writeObject("GANAS");
+                DataBase.addPuntos(jugador.getNombre(), jugador.getPassword(), apuesta);
+            }
+            else//EMPATE
+            {
+                this.jugador.writeObject("EMPATE");
+            }
+            
+            
+            
+            //ENVIO NUEVA PUNTUACION
+            Integer puntos = DataBase.getPuntos(jugador.getNombre(), jugador.getPassword());
+            this.jugador.writeObject(puntos.toString());
+            
+            
+            //¿JUGAR DE NUEVO?
+            
+            
+            
+            
+            
+        }catch(IOException e){
+            e.printStackTrace();
+        }catch(ClassNotFoundException e){
+            e.printStackTrace();
         }
+        
+        
+        
+        
+        
     }
     
     
