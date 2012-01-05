@@ -6,8 +6,8 @@ package principal;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import juego.Casino;
-import juego.Juego;
 import juego.Jugador;
 
 /**
@@ -22,57 +22,84 @@ public class Despachador extends Thread{
         this.cliente = new Jugador(cliente);
     }
     
+    @Override
     public void run()
     {
         try{
+            String comando;
+            String usuario=null;
+            String password=null;
+            boolean login=false;
+            int puntos=-1;
             
-            
-            //ofrece posibilidades
-            cliente.writeObject("Elija opcion");
-            cliente.writeObject("1.- Unirse a partida");
-            cliente.writeObject("2.- partida nueva");
-            
-            try {
-                    String d;
-                    boolean terminar_desp=false;
-                    do{
-                        d = (String) cliente.readObject();
-                        System.out.println(d);
-                        
-                        if(d.equals("1"))
-                        {
-                            cliente.writeObject("Elije juego");
-                            cliente.writeObject(Casino.listarJuegos());
-                            
-                            d = (String) cliente.readObject();                            
-                            terminar_desp = Casino.addGamerToJuego(Integer.parseInt(d), cliente);
-                            
-                            
-                        }else if(d.equals("2"))
-                        {
-                            Juego j;
-                            cliente.writeObject("Creas Juego Carta Alta");
-                            terminar_desp = Casino.createJuegoCartaAlta(cliente);
-                            
-                            
-                        }
-                        
-                    }while(!terminar_desp);
-                   
+            do{
+                comando = (String) cliente.readObject();
+
+                if(comando.equalsIgnoreCase("LOGIN")){
+
+                    //LEO USUARIO Y PASSWORD
+                    usuario = (String) cliente.readObject();
+                    password = (String) cliente.readObject();
+
+                    //DEVUELVO PUNTOS
+                    puntos = DataBase.getPuntos(usuario, password);
+                    this.cliente.writeObject(puntos);
+
+                }else if(comando.equalsIgnoreCase("REGISTRAR")){
                     
+                    System.out.print("registrnadoo");
                     
-                } catch (ClassNotFoundException ex) {
-                    ex.printStackTrace();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                    //LEO USUARIO Y PASSWORD
+                    usuario = (String) cliente.readObject();
+                    password = (String) cliente.readObject();
+
+                    //CREO EL USUARIO EN LA BASE DE DATOS
+                    DataBase.newUsuario(usuario, password);
+
+                    //DEVUELVO PUNTOS
+                    puntos = DataBase.getPuntos(usuario, password);
+                    this.cliente.writeObject(puntos);
+                }else{
+                    System.out.println("comando desconocido");
                 }
+                
+                login = (puntos!=-1);
+                 
+            }while(!login);
             
-            //Cuando se de por finalizada la comunicacion se cierran los canales y el socket
-            //out.close();
-            //in.close();
-            //cliente.close();
+            cliente.setNombre(usuario);
+            cliente.setPassword(password);
             
             
+            //ENVIO LISTA DE JUEGOS
+            ArrayList<String> juegos = new ArrayList<String>();
+            juegos.add("carta_alta");
+            juegos.add("poker");
+            juegos.add("dados");
+            cliente.writeObject(juegos);
+            
+            
+            //RECIBO JUEGO SELECCIONADO
+            String juego;
+            juego = (String) cliente.readObject();
+            
+            
+            //LANZO JUEGO ASOCIADO
+            
+            if(juego.equals(juegos.get(0))){ //CARTA MAS ALTA
+                System.out.println(juego);
+                Casino.createJuegoCartaAlta(cliente);
+            }
+            else if(juego.equals(juegos.get(1))){ //POKER
+                System.out.println(juego);
+            }
+            else if(juego.equals(juegos.get(2))){ //DADOS
+                System.out.println(juego);
+            }
+            
+            
+        }catch (ClassNotFoundException e) {
+                    e.printStackTrace();
         }catch(IOException e){
             System.out.println(e.getMessage());
         }

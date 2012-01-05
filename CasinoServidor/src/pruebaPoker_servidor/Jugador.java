@@ -6,7 +6,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 /**
- * Clase que gestionar� el servidor para el juego del poker. Tiene como atributos el socket del cliente
+ * Clase que gestionara el servidor para el juego del poker. Tiene como atributos el socket del cliente
  * lo que apuesta en una jugada en concreto, lo que lleva acumulado y el nombre del jugador
  * @author 
  *
@@ -128,7 +128,7 @@ public class Jugador  {
 	
 	/**
 	 * Metodo que informa de la victoria a un jugador en concreto, y a los demas le dice quien ha ganado,
-	 * ahora est� implementado as�, pero cuando sea ya sea definitivo utilizare el nombre
+	 * ahora esta implementado asi, pero cuando sea ya sea definitivo utilizare el nombre
 	 * @param nombre2
 	 */
 	public void informarVictoria(int nombre2) {

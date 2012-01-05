@@ -23,18 +23,18 @@ public class Servidor {
 					ac=new AtenderClientes(cliente);//Creamos un nuevo jugador 
 					System.out.println("Creo una mesa");
 				}
-				else{//Si es cualquier otro numero de jugadores lo añadimos a la ultima mesa disponible
-					if(ac.isAlive()){//Si el hilo está vivo 
+				else{//Si es cualquier otro numero de jugadores lo anadimos a la ultima mesa disponible
+					if(ac.isAlive()){//Si el hilo esta vivo 
 						ac.suspend(); //Lo pauso
 					}
-					ac.anadir(cliente);//Se añade un cliente
+					ac.anadir(cliente);//Se anade un cliente
 					try{
-						ac.start();//Intento iniciar el hilo, esto se ejecutará solo una vez
+						ac.start();//Intento iniciar el hilo, esto se ejecutarï¿½ solo una vez
 					}
 					catch (Exception e) {
-						ac.resume();//Reinicio el hilo despues de añadir
+						ac.resume();//Reinicio el hilo despues de aï¿½adir
 					}
-					System.out.println("Añado un jugador");
+					System.out.println("Aï¿½ado un jugador");
 				}
 				i++;//Se incrementa el numero de jugadores
 			}
