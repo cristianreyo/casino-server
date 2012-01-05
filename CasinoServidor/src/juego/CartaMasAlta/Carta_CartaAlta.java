@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Carta_CartaAlta implements Serializable{
     
     
-    private static final long serialVersionUID=12345;
+    private static final long serialVersionUID=5;
     
     
     private String tipo;
@@ -51,30 +51,22 @@ public class Carta_CartaAlta implements Serializable{
 
     public int getNumero() {
         return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
+    }    
 
     public String getSimbolo() {
         return simbolo;
-    }
-
-    public void setSimbolo(String simbolo) {
-        this.simbolo = simbolo;
-    }
+    }    
 
     public String getTipo() {
         return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+    }    
     
     public static long getSerialversionuid() {
         return serialVersionUID;
+    }
+    
+       public String getRutaImage(){
+        return "Recursos/"+valor+"-"+tipo+".jpg";
     }
     
 }
