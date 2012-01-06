@@ -90,12 +90,14 @@ public class Despachador extends Thread{
                 System.out.println(juego);
                 Casino.createJuegoCartaAlta(cliente);
             }
+            else if(juego.equals(juegos.get(2))){ //DADOS
+                System.out.println(juego);
+                Casino.createJuegoDados(cliente);
+            }
             else if(juego.equals(juegos.get(1))){ //POKER
                 System.out.println(juego);
             }
-            else if(juego.equals(juegos.get(2))){ //DADOS
-                System.out.println(juego);
-            }
+            
             
             
         }catch (ClassNotFoundException e) {
