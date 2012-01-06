@@ -48,4 +48,8 @@ public class Juego extends Thread{
     public String toString(){
         return this.descripcion;
     }
+    
+    public boolean isGame(String descripcion){
+        return this.descripcion.contains(descripcion);
+    }
 }

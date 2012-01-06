@@ -7,6 +7,7 @@ package juego;
 import java.net.Socket;
 import java.util.ArrayList;
 import juego.CartaMasAlta.CartaMasAlta;
+import juego.Dados.Dados;
 
 /**
  *
@@ -28,6 +29,36 @@ public class Casino {
         j.addGamer(cliente);
         j.start();
         return juegos.add(j);
+    }
+    
+    
+    public static synchronized boolean createJuegoDados(Jugador cliente){
+        
+        Juego j=null;
+        
+        //Se busca la primera mesa cuyo numero de jugadores no llegue 10
+        for(int i=0 ; i<juegos.size() && j==null ; i++){
+            if(juegos.get(i).isGame("Dados") && juegos.get(i).getNumGamers()<10)
+                j = juegos.get(i);
+        }
+        
+        //Si no se encuentra una mesa con numero de jugadores menor a 10
+        if(j==null)
+        {
+            j = new Dados();        //se crea una nueva mesa
+            j.addGamer(cliente);    //se aniade al jugador
+            j.start();              //comienza el juego
+        }
+        //Si se encuentra una mesa con numero de jugadores menor a 10
+        else if(j.isAlive())
+        {
+            j.suspend();            //se suspende el juego
+            j.addGamer(cliente);    //se aniade al jugador
+            j.resume();             //se continua el juego
+        }
+        
+        
+        return true;
     }
     
     

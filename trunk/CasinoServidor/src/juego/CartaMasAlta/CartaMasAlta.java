@@ -5,11 +5,6 @@
 package juego.CartaMasAlta;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import juego.Juego;
 import juego.Jugador;
 import principal.DataBase;
