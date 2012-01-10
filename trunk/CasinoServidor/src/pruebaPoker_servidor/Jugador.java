@@ -155,5 +155,11 @@ public class Jugador  {
 	public void setValorJugada(int valorJugada) {
 		this.valorJugada = valorJugada;
 	}
-	
+	public void enviarCantidad(int suma) {
+		try {
+			oos.writeObject(suma); //Le informo de que ha ganado
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

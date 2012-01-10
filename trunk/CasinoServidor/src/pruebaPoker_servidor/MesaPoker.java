@@ -13,7 +13,8 @@ public class MesaPoker extends Thread {
 	private Vector<Integer> apuestas=new Vector<Integer>();
 	private Baraja b=new Baraja();
 	private int jugadaMasAlta=0;
-	
+	private int suma=0;
+        
 	public MesaPoker(Socket cliente){
 		Jugador jugador=new Jugador(cliente);
 		jugadoress.add(jugador);
@@ -58,7 +59,10 @@ public class MesaPoker extends Thread {
 				apuesta=l.obtenerApuesta();//Este metodo tambian asigna la apuesta con el set
 				apuestas.add(apuesta); //Las inserto en el vector de apuestas
 			}
-			
+			suma=calcularSuma();
+			for(Jugador j:jugadores){
+				j.enviarCantidad(suma);
+			}
 			//Anado una carta en la mesa
 			mesa.add(b.getCarta(i));
 			i++;
@@ -74,7 +78,10 @@ public class MesaPoker extends Thread {
 				int acum=apuestas.get(pos);//Guardo lo que aposto en la jugada anterior
 				apuestas.set(pos, acum+apuesta);//Lo cambio, porque la apuesta es acumulativa
 			}
-			
+			suma=calcularSuma();
+			for(Jugador j:jugadores){
+				j.enviarCantidad(suma);
+			}
 			//Anado la ultima carta de la mesa
 			mesa.add(b.getCarta(i));
 			i++;
@@ -90,7 +97,10 @@ public class MesaPoker extends Thread {
 				int acum=apuestas.get(pos);//Guardo lo que aposto en la jugada anterior
 				apuestas.set(pos, acum+apuesta);//Lo cambio, porque la apuesta es acumulativa
 			}
-			
+			suma=calcularSuma();
+			for(Jugador j:jugadores){
+				j.enviarCantidad(suma);
+			}
 			//Calculo la puntuacion de la jugada de cada jugador
 			for(Jugador h:jugadores){
 				calcularMasAlta(h);
@@ -192,5 +202,12 @@ public class MesaPoker extends Thread {
 	public Vector<Jugador> getJugadoress() {
 		return jugadoress;
 	}
-	
+        
+	private int calcularSuma() {
+		int apuesta=0;
+		for(int  j:apuestas){
+			apuesta+=j;
+		}
+		return apuesta;
+	}
 }
