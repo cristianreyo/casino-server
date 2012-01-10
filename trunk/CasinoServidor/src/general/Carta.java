@@ -3,7 +3,7 @@ package general;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
 
-public class Carta implements Serializable {
+public class Carta implements Serializable, Comparable {
 	private static final long serialVersionUID=1;
 	private String numero; //El numero de la carta
 	private String palo; //El palo de la carta
@@ -101,5 +101,86 @@ public class Carta implements Serializable {
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+        @Override
+	public int compareTo(Object o) {
+		Carta aux=(Carta)o;
+		if(this.numero.compareTo("UNO")==0&&aux.numero.compareTo("UNO")!=0){
+			return -1;
+		}
+		else if(this.numero.compareTo("DOS")==0&&aux.numero.compareTo("UNO")==0){
+			return 1;
+		}
+		else if(this.numero.compareTo("DOS")==0&&(aux.numero.compareTo("TRES")==0||aux.numero.compareTo("CUATRO")==0||aux.numero.compareTo("CINCO")==0||aux.numero.compareTo("SEIS")==0||aux.numero.compareTo("SIETE")==0||aux.numero.compareTo("OCHO")==0||aux.numero.compareTo("NUEVE")==0||aux.numero.compareTo("DIEZ")==0||aux.numero.compareTo("J")==0||aux.numero.compareTo("Q")==0||aux.numero.compareTo("K")==0)){
+			return -1;
+		}
+		else if(this.numero.compareTo("TRES")==0&&(aux.numero.compareTo("DOS")==0 ||aux.numero.compareTo("UNO")==0)){
+			return 1;
+		}
+		else if(this.numero.compareTo("TRES")==0&&(aux.numero.compareTo("CUATRO")==0||aux.numero.compareTo("CINCO")==0||aux.numero.compareTo("SEIS")==0||aux.numero.compareTo("SIETE")==0||aux.numero.compareTo("OCHO")==0||aux.numero.compareTo("NUEVE")==0||aux.numero.compareTo("DIEZ")==0||aux.numero.compareTo("J")==0||aux.numero.compareTo("Q")==0||aux.numero.compareTo("K")==0)){
+			return -1;
+		}
+		else if(this.numero.compareTo("CUATRO")==0&&(aux.numero.compareTo("TRES")==0||aux.numero.compareTo("DOS")==0 ||aux.numero.compareTo("UNO")==0)){
+			return 1;
+		}
+		else if(this.numero.compareTo("CUATRO")==0&&(aux.numero.compareTo("CINCO")==0||aux.numero.compareTo("SEIS")==0||aux.numero.compareTo("SIETE")==0||aux.numero.compareTo("OCHO")==0||aux.numero.compareTo("NUEVE")==0||aux.numero.compareTo("DIEZ")==0||aux.numero.compareTo("J")==0||aux.numero.compareTo("Q")==0||aux.numero.compareTo("K")==0)){
+			return -1;
+		}
+		else if(this.numero.compareTo("CINCO")==0&&(aux.numero.compareTo("CUATRO")==0 ||aux.numero.compareTo("TRES")==0 ||aux.numero.compareTo("DOS")==0 ||aux.numero.compareTo("UNO")==0)){
+			return 1;
+		}
+		else if(this.numero.compareTo("CINCO")==0&&(aux.numero.compareTo("SEIS")==0||aux.numero.compareTo("SIETE")==0||aux.numero.compareTo("OCHO")==0||aux.numero.compareTo("NUEVE")==0||aux.numero.compareTo("DIEZ")==0||aux.numero.compareTo("J")==0||aux.numero.compareTo("Q")==0||aux.numero.compareTo("K")==0)){
+			return -1;
+		}
+		else if(this.numero.compareTo("SEIS")==0 && (aux.numero.compareTo("CINCO")==0||aux.numero.compareTo("CUATRO")==0||aux.numero.compareTo("TRES")==0||aux.numero.compareTo("DOS")==0||aux.numero.compareTo("UNO")==0)){
+			return 1;
+		}
+		else if(this.numero.compareTo("SEIS")==0&& (aux.numero.compareTo("SIETE")==0||aux.numero.compareTo("OCHO")==0||aux.numero.compareTo("NUEVE")==0||aux.numero.compareTo("DIEZ")==0||aux.numero.compareTo("J")==0||aux.numero.compareTo("Q")==0||aux.numero.compareTo("K")==0)){
+			return -1;
+		}
+		else if(this.numero.compareTo("SIETE")==0&&(aux.numero.compareTo("UNO")==0||aux.numero.compareTo("DOS")==0||aux.numero.compareTo("TRES")==0||aux.numero.compareTo("CUATRO")==0||aux.numero.compareTo("CINCO")==0||aux.numero.compareTo("SEIS")==0)){
+			return 1;
+		}
+		else if(this.numero.compareTo("SIETE")==0&&(aux.numero.compareTo("K")==0 || aux.numero.compareTo("Q")==0||aux.numero.compareTo("J")==0||aux.numero.compareTo("DIEZ")==0||aux.numero.compareTo("NUEVE")==0||aux.numero.compareTo("OCHO")==0 )){
+			return -1;
+		}
+		else if(this.numero.compareTo("OCHO")==0&&(aux.numero.compareTo("UNO")==0||aux.numero.compareTo("DOS")==0||aux.numero.compareTo("TRES")==0||aux.numero.compareTo("CUATRO")==0||aux.numero.compareTo("CINCO")==0||aux.numero.compareTo("SEIS")==0||aux.numero.compareTo("SIETE")==0)){
+			return 1;
+		}
+		else if(this.numero.compareTo("OCHO")==0&&(aux.numero.compareTo("K")==0 || aux.numero.compareTo("Q")==0||aux.numero.compareTo("J")==0||aux.numero.compareTo("DIEZ")==0||aux.numero.compareTo("NUEVE")==0)){
+			return -1;
+		}
+		else if(this.numero.compareTo("NUEVE")==0&&(aux.numero.compareTo("UNO")==0||aux.numero.compareTo("DOS")==0||aux.numero.compareTo("TRES")==0||aux.numero.compareTo("CUATRO")==0||aux.numero.compareTo("CINCO")==0||aux.numero.compareTo("SEIS")==0||aux.numero.compareTo("SIETE")==0||aux.numero.compareTo("OCHO")==0)){
+			return 1;
+		}
+		else if(this.numero.compareTo("NUEVE")==0&&(aux.numero.compareTo("K")==0 || aux.numero.compareTo("Q")==0||aux.numero.compareTo("J")==0||aux.numero.compareTo("DIEZ")==0 )){
+			return -1;
+		}
+		else if(this.numero.compareTo("DIEZ")==0&&(aux.numero.compareTo("UNO")==0||aux.numero.compareTo("DOS")==0||aux.numero.compareTo("TRES")==0||aux.numero.compareTo("CUATRO")==0||aux.numero.compareTo("CINCO")==0||aux.numero.compareTo("SEIS")==0||aux.numero.compareTo("SIETE")==0||aux.numero.compareTo("OCHO")==0||aux.numero.compareTo("NUEVE")==0)){
+			return 1;
+		}
+		else if(this.numero.compareTo("DIEZ")==0&&(aux.numero.compareTo("K")==0 || aux.numero.compareTo("Q")==0||aux.numero.compareTo("J")==0)){
+			return -1;
+		}
+		else if(this.numero.compareTo("J")==0&&(aux.numero.compareTo("UNO")==0||aux.numero.compareTo("DOS")==0||aux.numero.compareTo("TRES")==0||aux.numero.compareTo("CUATRO")==0||aux.numero.compareTo("CINCO")==0||aux.numero.compareTo("SEIS")==0||aux.numero.compareTo("SIETE")==0||aux.numero.compareTo("OCHO")==0||aux.numero.compareTo("NUEVE")==0||aux.numero.compareTo("DIEZ")==0)){
+			return 1;
+		}
+		else if(this.numero.compareTo("J")==0&&(aux.numero.compareTo("K")==0 || aux.numero.compareTo("Q")==0)){
+			return -1;
+		}
+		else if(this.numero.compareTo("Q")==0&&(aux.numero.compareTo("UNO")==0||aux.numero.compareTo("DOS")==0||aux.numero.compareTo("TRES")==0||aux.numero.compareTo("CUATRO")==0||aux.numero.compareTo("CINCO")==0||aux.numero.compareTo("SEIS")==0||aux.numero.compareTo("SIETE")==0||aux.numero.compareTo("OCHO")==0||aux.numero.compareTo("NUEVE")==0||aux.numero.compareTo("DIEZ")==0||aux.numero.compareTo("J")==0)){
+			return 1;
+		}
+		else if(this.numero.compareTo("Q")==0&&(aux.numero.compareTo("K")==0)){
+			return -1;
+		}
+		else if(this.numero.compareTo("K")==0&&aux.numero.compareTo("K")!=0){
+			return 1;
+		}
+		else if(this.numero.compareTo(aux.numero)==0){
+			return 0;
+		}
+		else
+			return 0;
 	}
 }
