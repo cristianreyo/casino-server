@@ -61,6 +61,11 @@ public class Casino {
         return true;
     }
     
+    public static synchronized boolean createJuegoPoker(Jugador cliente){
+        
+        return true;
+    }
+    
     
     /**
      * Remueve un jugador de un juego.
