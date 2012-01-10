@@ -96,7 +96,7 @@ public class Despachador extends Thread{
             }
             else if(juego.equals(juegos.get(2))){ //DADOS
                 System.out.println(juego);
-                Casino.createJuegoDados(cliente);
+                //Casino.createJuegoDados(cliente);
             }
             
             
