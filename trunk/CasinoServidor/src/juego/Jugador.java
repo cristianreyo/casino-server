@@ -16,9 +16,9 @@ import java.net.Socket;
 public class Jugador {
     private String nombre;
     private String password;
-    private Socket cliente;
-    private ObjectInputStream objectIn;// = new ObjectInputStream(in);
-    private ObjectOutputStream objectOut;// = new ObjectOutputStream(out);
+    protected Socket cliente;
+    protected ObjectInputStream objectIn;// = new ObjectInputStream(in);
+    protected ObjectOutputStream objectOut;// = new ObjectOutputStream(out);
 
     
     public Jugador(Socket cliente){

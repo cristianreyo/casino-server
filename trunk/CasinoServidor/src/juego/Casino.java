@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import juego.CartaMasAlta.CartaMasAlta;
 import juego.Dados.Dados;
+import juego.poker.JuegoPoker;
+
 
 /**
  *
@@ -62,6 +64,31 @@ public class Casino {
     }
     
     public static synchronized boolean createJuegoPoker(Jugador cliente){
+        
+        Juego j=null;
+        
+        for(int i=0; i<juegos.size() && j==null ; i++){
+            if(juegos.get(i).toString().compareToIgnoreCase("poker")==0 
+                    && juegos.get(i).getNumGamers()<10){
+                j=juegos.get(i);
+            }
+        }
+        
+        if(j!=null) //tenemos juego
+        {
+            j.addGamer(cliente);
+            try{
+                j.start();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            j=new JuegoPoker();
+            j.addGamer(cliente);
+            //EN ESTE NO SE DA A START
+        }
         
         return true;
     }
