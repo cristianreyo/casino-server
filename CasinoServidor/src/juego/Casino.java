@@ -11,6 +11,7 @@ import juego.Dados.JuegoDados;
 import juego.Dados.JugadorDados;
 import juego.poker.JuegoPoker;
 import juego.poker.JugadorPoker;
+import juego.ruleta.*;
 
 
 /**
@@ -33,6 +34,45 @@ public class Casino {
         j.addGamer(cliente);
         j.start();
         return juegos.add(j);
+    }
+    
+    public static synchronized boolean createJuegoRuleta(Jugador cliente){
+        
+        Juego j=null;
+        System.out.println("antes del bucle");
+        System.out.println(juegos.size());
+        
+        for(int i=0; i<juegos.size() && j==null ; i++){
+            System.out.println("El juego es: "+juegos.get(i));
+            if(juegos.get(i).toString().compareToIgnoreCase("ruleta")==0 
+                    && juegos.get(i).getNumGamers()<10){
+                 System.out.println("Encontrado");
+                j=juegos.get(i);
+            }
+        }
+        
+        System.out.println("despues del bucle");
+        if(j!=null) //tenemos juego
+        {
+            System.out.println("en el if");
+            j.addGamer(cliente);
+            try{
+                j.start();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            System.out.println("en el else");
+            j=new JuegoRuleta();
+            j.addGamer(cliente);
+            juegos.add(j);
+
+            //EN ESTE NO SE DA A START
+        }
+        
+        return true;
     }
     
     

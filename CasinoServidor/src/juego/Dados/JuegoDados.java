@@ -60,6 +60,7 @@ public class JuegoDados extends Juego implements Runnable {
              for(JugadorDados j:jugadoresC){
                  int puntos=DataBase.getPuntos(j.getNombre(), j.getPassword());
                  j.saldo=puntos;
+                 System.out.println(puntos);
                  j.enviarSaldo();
              }
             

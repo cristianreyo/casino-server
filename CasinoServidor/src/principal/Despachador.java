@@ -77,6 +77,8 @@ public class Despachador extends Thread{
             juegos.add("carta_alta");
             juegos.add("poker");
             juegos.add("dados");
+            juegos.add("ruleta");
+            
             cliente.writeObject(juegos);
             
             
@@ -98,9 +100,11 @@ public class Despachador extends Thread{
             else if(juego.equals(juegos.get(2))){ //DADOS
                 System.out.println(juego);
                 Casino.createJuegoDados(cliente);
-            }else{
+            }
+            else if(juego.equals(juegos.get(3))){ //RULETA
                 //RULETA
-                
+                System.out.println(juego);
+                Casino.createJuegoRuleta(cliente);                
             }
             
             
