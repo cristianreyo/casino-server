@@ -6,8 +6,12 @@ package juego.Dados;
 
 
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import juego.Jugador;
 
 /**
@@ -19,21 +23,33 @@ public class JugadorDados extends Jugador {
     public int saldo;
     private int apuesta;
     private int tipoApuesta;
-
+    private DataInputStream dis;
+    private DataOutputStream dos;
     public JugadorDados(Socket cliente) {
         super(cliente);
-
-        apuesta = 0; //Inicializo la apuesta
-        saldo = 1000;
-        apuesta = 0;
+        try {
+            apuesta = 0; //Inicializo la apuesta
+            saldo = 1000;
+            apuesta = 0;
+            dis=new DataInputStream(cliente.getInputStream());
+            dos=new DataOutputStream(cliente.getOutputStream());
+        } catch (IOException ex) {
+            Logger.getLogger(JugadorDados.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
     
     public JugadorDados(Jugador j){
         super(j);
-        apuesta = 0; //Inicializo la apuesta
-        saldo = 1000;
-        apuesta = 0;
+        try {
+            apuesta = 0; //Inicializo la apuesta
+            saldo = 1000;
+            apuesta = 0;
+            dis=new DataInputStream(cliente.getInputStream());
+            dos=new DataOutputStream(cliente.getOutputStream());
+        } catch (IOException ex) {
+            Logger.getLogger(JugadorDados.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public int getTipoApuesta() {
@@ -47,7 +63,7 @@ public class JugadorDados extends Jugador {
     public int obtenerApuesta() {
         apuesta = 0; //Inicializo a cero
         try {
-            apuesta = objectIn.readInt();
+            apuesta = dis.readInt();
             //Leo el objeto con la apuesta
 
         } catch (IOException e) {
@@ -62,7 +78,7 @@ public class JugadorDados extends Jugador {
         int d = 0;
         try { //Los dados tiene valor
 
-            d = objectIn.readInt();
+            d = dis.readInt();
         } catch (IOException ex) {
         }
 
@@ -73,7 +89,7 @@ public class JugadorDados extends Jugador {
 
         try { //Los dados tiene valor
 
-            objectOut.writeInt(control);
+            dos.writeInt(control);
 
         } catch (IOException ex) {
         }
@@ -84,7 +100,7 @@ public class JugadorDados extends Jugador {
 
         int tipoAp = 0;
         try {
-            tipoAp = objectIn.readInt();
+            tipoAp = dis.readInt();
 
         } catch (IOException ex) {
         }
@@ -97,7 +113,7 @@ public class JugadorDados extends Jugador {
 
         try { //Los dados tiene valor
 
-            objectOut.writeInt(this.saldo);
+            dos.writeInt(this.saldo);
 
         } catch (IOException ex) {
         }
@@ -108,7 +124,7 @@ public class JugadorDados extends Jugador {
 
         System.out.println("" + ganador);
         try {
-            objectOut.writeUTF(ganador);
+            dos.writeUTF(ganador);
         } catch (IOException ex) {
         }
     }
@@ -117,7 +133,7 @@ public class JugadorDados extends Jugador {
 
         System.out.println("" + aviso);
         try {
-            objectOut.writeUTF(aviso);
+            dos.writeUTF(aviso);
         } catch (IOException ex) {
         }
     }
