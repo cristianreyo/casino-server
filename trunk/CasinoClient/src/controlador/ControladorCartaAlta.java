@@ -48,6 +48,11 @@ public class ControladorCartaAlta {
             cv.setSize(1084, 468);
             cv.setLocationRelativeTo(null);
         }
+        
+        if(juego.compareToIgnoreCase("ruleta")==0){
+            cv.setSize(427,530);
+            cv.setLocationRelativeTo(null);
+        }
     }
     
     public void ShowMensaje(String mensaje){
