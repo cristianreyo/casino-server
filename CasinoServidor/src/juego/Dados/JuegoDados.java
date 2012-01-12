@@ -37,14 +37,14 @@ public class JuegoDados extends Juego implements Runnable {
     @Override
     public void run() {
        
-          Vector<JugadorDados> jugadoresC;
+          ArrayList<JugadorDados> jugadoresC;
           int apuesta=0;
           boolean controlador=false;
           int pos;
           String ganador;
                   
         while (true) { 
-            jugadoresC = (Vector<JugadorDados>) jugadores.clone(); 	 //Clono el vector de jugadores para poder acceder a el de forma concurrente
+            jugadoresC = (ArrayList<JugadorDados>) jugadores.clone(); 	 //Clono el vector de jugadores para poder acceder a el de forma concurrente
              apuesta=0;
              controlador=false;
              eleccion=0;
@@ -90,7 +90,7 @@ public class JuegoDados extends Juego implements Runnable {
            do{
     
              
-            JugadorDados jaux=jugadoresC.elementAt(0);
+            JugadorDados jaux=jugadoresC.get(0);
                  d1.setValor(jaux.recibirDados());
                  d2.setValor(jaux.recibirDados());
                
@@ -269,7 +269,7 @@ public class JuegoDados extends Juego implements Runnable {
       * al jugador que halla ganado
       */
 
-     public String calcularPremios(Vector<JugadorDados> jugadoresC){
+     public String calcularPremios(ArrayList<JugadorDados> jugadoresC){
       
          String apGanadora="";
          int apuesta;
