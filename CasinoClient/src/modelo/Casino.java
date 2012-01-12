@@ -286,5 +286,19 @@ public class Casino extends Observable{
             e.printStackTrace();
         }
     }
+    
+    public Socket getSocket(){
+        return this.servidor;
+    }
+
+    public ObjectInputStream getObjectIn() {
+        return objectIn;
+    }
+
+    public ObjectOutputStream getObjectOut() {
+        return objectOut;
+    }
+    
+    
        
 }

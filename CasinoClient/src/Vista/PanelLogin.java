@@ -10,7 +10,7 @@
  */
 package Vista;
 
-import controlador.Controlador;
+import controlador.ControladorCartaAlta;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -28,11 +28,11 @@ public class PanelLogin extends javax.swing.JPanel {
 
     //IMAGEN DE FONDO
     Image imagen;
-    Controlador controller;
+    ControladorCartaAlta controller;
     CasinoView cv;
     
     /** Creates new form PanelLogin */
-    public PanelLogin(int idioma, Controlador controller, CasinoView cv) {
+    public PanelLogin(int idioma, ControladorCartaAlta controller, CasinoView cv) {
         this.cv = cv;
         initComponents();
         this.controller=controller;

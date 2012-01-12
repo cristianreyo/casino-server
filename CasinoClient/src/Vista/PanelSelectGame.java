@@ -10,7 +10,7 @@
  */
 package Vista;
 
-import controlador.Controlador;
+import controlador.ControladorCartaAlta;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -32,12 +32,12 @@ public class PanelSelectGame extends javax.swing.JPanel implements Observer {
 
     //IMAGEN DE FONDO
     Image imagen;
-    Controlador controller;
+    ControladorCartaAlta controller;
     Casino casino;
     CasinoView cv;
     
     /** Creates new form PanelSelectGame */
-    public PanelSelectGame(int idioma, Controlador controller, Casino casino, CasinoView cv) {
+    public PanelSelectGame(int idioma, ControladorCartaAlta controller, Casino casino, CasinoView cv) {
         
         this.cv =cv;
         

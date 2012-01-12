@@ -10,14 +10,10 @@
  */
 package Vista;
 
-import Vista.AboutView;
-import Vista.ConexionView;
-import Vista.IdiomaView;
-import Vista.PanelCartaAlta;
-import Vista.PanelLogin;
-import Vista.PanelSelectGame;
-import controlador.Controlador;
-import controlador.Controlador;
+
+import controlador.ControladorCartaAlta;
+import controlador.ControladorDados;
+import controlador.ControladorPoker;
 import java.awt.CardLayout;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,6 +21,8 @@ import java.io.InputStream;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Properties;
+import juego.Dados.ModeloDados;
+import juego.Poker.ModeloPoker;
 import modelo.Casino;
 
 /**
@@ -35,11 +33,11 @@ public class CasinoView extends javax.swing.JFrame implements Observer {
     
     private int idioma;
     private Casino casino;
-    private Controlador controller;
+    private ControladorCartaAlta controller;
     
 
     /** Creates new form Casino */
-    public CasinoView(Casino casino, Controlador controller) {
+    public CasinoView(Casino casino, ControladorCartaAlta controller) {
         this.casino=casino;
         this.controller = controller;
         
@@ -83,6 +81,20 @@ public class CasinoView extends javax.swing.JFrame implements Observer {
         this.PanelPrincipal.add(new PanelLogin(idioma,controller,this),"login");
         this.PanelPrincipal.add(new PanelSelectGame(idioma,controller,casino,this),"selectgame");
         this.PanelPrincipal.add(new PanelCartaAlta(casino,controller),"carta_alta");
+        
+        //POKER
+        ModeloPoker model_pok = new ModeloPoker();
+        InterfazPoker view_pok = new InterfazPoker(model_pok);
+        ControladorPoker control = new ControladorPoker(model_pok, view_pok,casino);
+        this.PanelPrincipal.add(view_pok,"poker");
+        
+        
+        //DADOS
+        ModeloDados model_dados = new ModeloDados();
+        InterfazDados view_dados = new InterfazDados(model_dados);
+        ControladorDados control_dados = new ControladorDados(model_dados, view_dados,casino);
+        this.PanelPrincipal.add(view_dados,"dados");
+        
     }
     
     private void CargarIdioma(){
