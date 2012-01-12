@@ -5,6 +5,7 @@
 package juego.CartaMasAlta;
 
 import java.io.IOException;
+import juego.Casino;
 import juego.Juego;
 import juego.Jugador;
 import principal.DataBase;
@@ -90,14 +91,18 @@ public class CartaMasAlta extends Juego {
             
             }catch(IOException e){
                 e.printStackTrace();
+                jugar=false;
             }catch(ClassNotFoundException e){
                 e.printStackTrace();
+                jugar=false;
             }
         }
         
+        //Cierro los puertos
+        this.jugador.ClosePort(); 
         
-        
-        
+        //Elimino el juego de la lista de juegos
+        Casino.deleteJuego(this);
         
     }
     

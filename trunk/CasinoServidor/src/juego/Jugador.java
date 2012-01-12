@@ -31,6 +31,14 @@ public class Jugador {
             e.printStackTrace();
         }
     }
+    
+    public Jugador(Jugador j){
+        this.nombre     = j.nombre;
+        this.password   = j.password;
+        this.cliente    = j.cliente;
+        this.objectIn   = j.objectIn;
+        this.objectOut  = j.objectOut;
+    }
 
     public String getPassword() {
         return password;
@@ -57,7 +65,21 @@ public class Jugador {
         return objectIn.readObject();
     }
     
+    public void ClosePort(){
+        try{
+            this.objectIn.close();
+            this.objectOut.close();
+            this.cliente.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
     public String toString(){
         return this.nombre;
+    }
+
+    public Socket getSocket() {
+        return cliente;
     }
 }

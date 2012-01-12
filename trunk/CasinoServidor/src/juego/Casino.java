@@ -7,8 +7,10 @@ package juego;
 import java.net.Socket;
 import java.util.ArrayList;
 import juego.CartaMasAlta.CartaMasAlta;
-import juego.Dados.Dados;
+import juego.Dados.JuegoDados;
+import juego.Dados.JugadorDados;
 import juego.poker.JuegoPoker;
+import juego.poker.JugadorPoker;
 
 
 /**
@@ -37,46 +39,23 @@ public class Casino {
     public static synchronized boolean createJuegoDados(Jugador cliente){
         
         Juego j=null;
-        
-        //Se busca la primera mesa cuyo numero de jugadores no llegue 10
-        for(int i=0 ; i<juegos.size() && j==null ; i++){
-            if(juegos.get(i).isGame("Dados") && juegos.get(i).getNumGamers()<10)
-                j = juegos.get(i);
-        }
-        
-        //Si no se encuentra una mesa con numero de jugadores menor a 10
-        if(j==null)
-        {
-            j = new Dados();        //se crea una nueva mesa
-            j.addGamer(cliente);    //se aniade al jugador
-            j.start();              //comienza el juego
-        }
-        //Si se encuentra una mesa con numero de jugadores menor a 10
-        else if(j.isAlive())
-        {
-            j.suspend();            //se suspende el juego
-            j.addGamer(cliente);    //se aniade al jugador
-            j.resume();             //se continua el juego
-        }
-        
-        
-        return true;
-    }
-    
-    public static synchronized boolean createJuegoPoker(Jugador cliente){
-        
-        Juego j=null;
+        System.out.println("antes del bucle");
+        System.out.println(juegos.size());
         
         for(int i=0; i<juegos.size() && j==null ; i++){
-            if(juegos.get(i).toString().compareToIgnoreCase("poker")==0 
+            System.out.println("El juego es: "+juegos.get(i));
+            if(juegos.get(i).toString().compareToIgnoreCase("dados")==0 
                     && juegos.get(i).getNumGamers()<10){
+                 System.out.println("Encontrado");
                 j=juegos.get(i);
             }
         }
         
+        System.out.println("despues del bucle");
         if(j!=null) //tenemos juego
         {
-            j.addGamer(cliente);
+            System.out.println("en el if");
+            j.addGamer(new JugadorDados(cliente));
             try{
                 j.start();
             }catch(Exception e){
@@ -85,8 +64,52 @@ public class Casino {
         }
         else
         {
+            System.out.println("en el else");
+            j=new JuegoDados();
+            JugadorDados gamer = new JugadorDados(cliente);
+            j.addGamer(gamer);
+            juegos.add(j);
+
+            //EN ESTE NO SE DA A START
+        }
+        
+        return true;
+    }
+    
+    public static synchronized boolean createJuegoPoker(Jugador cliente){
+        System.out.println("antes del bucle");
+        Juego j=null;
+        System.out.println("antes del bucle");
+        System.out.println(juegos.size());
+        
+        for(int i=0; i<juegos.size() && j==null ; i++){
+            System.out.println("El juego es: "+juegos.get(i));
+            if(juegos.get(i).toString().compareToIgnoreCase("poker")==0 
+                    && juegos.get(i).getNumGamers()<10){
+                 System.out.println("Encontrado");
+                j=juegos.get(i);
+            }
+        }
+        
+        System.out.println("despues del bucle");
+        if(j!=null) //tenemos juego
+        {
+            System.out.println("en el if");
+            j.addGamer(new JugadorPoker(cliente));
+            try{
+                j.start();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            System.out.println("en el else");
             j=new JuegoPoker();
-            j.addGamer(cliente);
+            JugadorPoker gamer = new JugadorPoker(cliente);
+            j.addGamer(gamer);
+            juegos.add(j);
+
             //EN ESTE NO SE DA A START
         }
         
@@ -118,12 +141,15 @@ public class Casino {
      */
     public static synchronized boolean addGamerToJuego(int j, Jugador gamer){
         boolean anadido=false;
-        
         if(j>=0 && j<juegos.size()){
             anadido = juegos.get(j).addGamer(gamer);
-        }
-        
+        }      
         return anadido;
+    }
+    
+    
+    public static synchronized boolean deleteJuego(Juego j){
+        return juegos.remove(j);
     }
     
     

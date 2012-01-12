@@ -23,7 +23,7 @@ public class DataBase {
                Class.forName("com.mysql.jdbc.Driver");
 
                // Establecemos la conexión con la base de datos. 
-                conexion = DriverManager.getConnection ("jdbc:mysql://localhost/Casino","cliente", "1234");
+                conexion = DriverManager.getConnection ("jdbc:mysql://localhost/Casino","root", "");
             } catch (Exception e)
             {
                e.printStackTrace();
