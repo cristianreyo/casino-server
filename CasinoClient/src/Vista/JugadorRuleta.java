@@ -21,7 +21,7 @@ import java.net.*;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import juego.Ruleta.Jugador;
-import modelo.Casino;
+import general.Casino;
 
 
 

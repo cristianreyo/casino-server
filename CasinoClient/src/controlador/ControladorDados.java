@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import juego.Dados.ModeloDados;
-import modelo.Casino;
+import general.Casino;
 
 /**
  *

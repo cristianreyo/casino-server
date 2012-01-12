@@ -8,7 +8,7 @@ package Principal;
 
 import Vista.CasinoView;
 import controlador.ControladorCartaAlta;
-import modelo.Casino;
+import general.Casino;
 
 /**
  *

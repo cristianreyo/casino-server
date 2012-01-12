@@ -11,7 +11,7 @@ package controlador;
 import Vista.InterfazPoker;
 import java.awt.event.*;
 import juego.Poker.ModeloPoker;
-import modelo.Casino;
+import general.Casino;
 
 public class ControladorPoker {
 

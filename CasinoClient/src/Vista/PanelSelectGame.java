@@ -22,7 +22,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Properties;
 import javax.imageio.ImageIO;
-import modelo.Casino;
+import general.Casino;
 
 /**
  *

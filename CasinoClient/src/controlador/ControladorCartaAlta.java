@@ -8,7 +8,7 @@ import Vista.CasinoView;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import juego.CartaMasAlta.Carta_CartaAlta;
-import modelo.Casino;
+import general.Casino;
 
 /**
  * @author Miguel Angel Fuentes Cardenas
