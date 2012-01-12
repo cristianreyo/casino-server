@@ -83,6 +83,7 @@ public class ModeloPoker {
             } else {
                 String ganador = (String) ois.readObject();
                 System.out.println(ganador);
+                puntosAc=Integer.toString((Integer)ois.readObject());
                 cartasMesa.clear();// Limpio las cartas
                 int tamanoMesa = ois.readInt(); // Leo el numero de cartas a recibir
                 // Recibo las cartas (3)
@@ -136,8 +137,10 @@ public class ModeloPoker {
                     cartaMesa5 = cartasMesa.get(4).getImagen();
                 }
             } else {
+                
                 String ganador = (String) ois.readObject();
                 System.out.println(ganador);
+                puntosAc=Integer.toString((Integer)ois.readObject());
                 cartasMesa.clear();// Limpio las cartas
                 int tamanoMesa = ois.readInt(); // Leo el numero de cartas a recibir
                 // Recibo las cartas (3)
@@ -168,6 +171,7 @@ public class ModeloPoker {
             //servidor = new Socket("localhost", 12125);
 //            ois = new ObjectInputStream(servidor.getInputStream());//Creo el buffer de entrada
 //            oos = new ObjectOutputStream(servidor.getOutputStream());//Creo el buffer de salida
+            puntosAc=Integer.toString((Integer)ois.readObject());
             System.out.println("Antes de leer un numero");
             cartasMesa.clear();// Limpio las cartas
             int tamanoMesa = ois.readInt(); // Leo el numero de cartas a recibir
