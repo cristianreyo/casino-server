@@ -95,6 +95,10 @@ public class CasinoView extends javax.swing.JFrame implements Observer {
         ControladorDados control_dados = new ControladorDados(model_dados, view_dados,casino);
         this.PanelPrincipal.add(view_dados,"dados");
         
+        
+        //RULETA
+        
+        
     }
     
     private void CargarIdioma(){
