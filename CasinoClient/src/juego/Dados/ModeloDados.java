@@ -42,6 +42,7 @@ public class ModeloDados {
     public void apostar() {
         try {
 
+            
             System.out.println("Recibiendo posicion...");
 
             pos = ois.readInt();
