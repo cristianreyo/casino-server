@@ -79,6 +79,19 @@ public class DataBase {
         }
     }
     
+    public synchronized static  void setPuntos(String user, String password, int puntos){
+        conectar();
+        
+        
+        // Preparamos la consulta 
+        try{
+            Statement s = conexion.createStatement(); 
+            s.executeUpdate("UPDATE Casino.Jugador SET puntos="+puntos+" WHERE nombre=\""+user+"\" and password=\""+password+"\"");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     
     /**
      * Dado un usuario y un password crea un nuevo usuario si dicho usuario no
