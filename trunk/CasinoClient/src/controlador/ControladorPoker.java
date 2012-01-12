@@ -103,6 +103,7 @@ public class ControladorPoker {
             modelo.setOis(casino.getObjectIn());
             modelo.setOos(casino.getObjectOut());
             modelo.conectar();
+            vista.setPuntosAcumulados(modelo.getPuntosAc());
             vista.setCartaMesa1(modelo.getCartaMesa1());
             vista.setCartaMesa2(modelo.getCartaMesa2());
             vista.setCartaMesa3(modelo.getCartaMesa3());
