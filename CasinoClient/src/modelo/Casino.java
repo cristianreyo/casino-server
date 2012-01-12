@@ -4,12 +4,8 @@
  */
 package modelo;
 
+import java.io.*;
 import juego.CartaMasAlta.Carta_CartaAlta;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -30,7 +26,21 @@ public class Casino extends Observable{
     private ObjectOutputStream objectOut;
     private ObjectInputStream objectIn;
     
+    private DataInputStream is;
+    private DataOutputStream os;
+    
     private Jugador jugador;
+
+    
+    
+    public DataInputStream getIs() {
+        return is;
+    }
+
+    public DataOutputStream getOs() {
+        return os;
+    } 
+    
     
     
     public Casino(){
@@ -71,9 +81,11 @@ public class Casino extends Observable{
                 
                 //CREO FLUJO DE SALIDA
                 this.objectOut = new ObjectOutputStream(servidor.getOutputStream());
+                this.os = new DataOutputStream(servidor.getOutputStream());
                 
                 //CREO FLUJO DE ENTRADA
                 this.objectIn = new ObjectInputStream(servidor.getInputStream());
+                this.is = new DataInputStream(servidor.getInputStream());
             }
             
 
