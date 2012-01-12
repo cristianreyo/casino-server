@@ -155,4 +155,19 @@ public class JugadorPoker extends Jugador {
             e.printStackTrace();
         }
     }
+
+    public void enviarPuntos() {
+        try {
+            objectOut.writeObject(cantidadTotal); //Le informo de que ha ganado
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean esGanador(int port) {
+        if(port==cliente.getPort()){
+            return true;
+        }
+        return false;
+    }
 }

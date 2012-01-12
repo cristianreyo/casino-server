@@ -8,6 +8,7 @@ import general.*;
 import java.util.*;
 import juego.Juego;
 import juego.Jugador;
+import principal.DataBase;
 
 /**
  *
@@ -46,7 +47,12 @@ public class JuegoPoker extends Juego {
             mesa.add(b.getCarta(2));//Se obtiene la 3º carta
             jugadoresC.clear();//Se limpia el vector de jugadores
             jugadoresC = (ArrayList<Jugador>) jugadores.clone();	 //Se clona el vector de jugadores
-
+            
+            for(Jugador j:jugadoresC){
+                int puntos=DataBase.getPuntos(j.getNombre(), j.getPassword());
+                ((JugadorPoker) j).setCantidadTotal(puntos);
+                ((JugadorPoker) j).enviarPuntos();
+            }
             //Envio las tres cartas de base
 //            for(int t=0; t<jugadoresC.size();t++){
 //                jugadoresC.get(t).enviarCartas(mesa);
@@ -69,6 +75,7 @@ public class JuegoPoker extends Juego {
             for (Jugador j : jugadoresC) {
                 apuesta = ((JugadorPoker) j).obtenerApuesta();//Este metodo tambian asigna la apuesta con el set
                 apuestas.add(apuesta); //Las inserto en el vector de apuestas
+                ((JugadorPoker) j).setCantidadTotal(((JugadorPoker) j).getCantidadTotal()-apuesta);
             }
             System.out.println("antes de enviar la suma");
             suma = calcularSuma();
@@ -88,6 +95,7 @@ public class JuegoPoker extends Juego {
                 apuesta = ((JugadorPoker) j).obtenerApuesta();//Este metodo tambian asigna la apuesta con el set
                 int pos = jugadores.indexOf(((JugadorPoker) j));//Busco la posicion del jugador que estoy iterando
                 int acum = apuestas.get(pos);//Guardo lo que aposto en la jugada anterior
+                ((JugadorPoker) j).setCantidadTotal(((JugadorPoker) j).getCantidadTotal()-apuesta);
                 apuestas.set(pos, acum + apuesta);//Lo cambio, porque la apuesta es acumulativa
             }
             suma = calcularSuma();
@@ -109,6 +117,7 @@ public class JuegoPoker extends Juego {
                 apuesta = ((JugadorPoker) j).obtenerApuesta();//Este metodo tambian asigna la apuesta con el set
                 int pos = jugadores.indexOf(((JugadorPoker) j));//Busco la posicion del jugador que estoy iterando
                 int acum = apuestas.get(pos);//Guardo lo que aposto en la jugada anterior
+                ((JugadorPoker) j).setCantidadTotal(((JugadorPoker) j).getCantidadTotal()-apuesta);
                 apuestas.set(pos, acum + apuesta);//Lo cambio, porque la apuesta es acumulativa
             }
             System.out.println("enviando lo de la mesaa");
@@ -130,8 +139,11 @@ public class JuegoPoker extends Juego {
             //Informo a todos los jugadores que ha ganado el jugador X
             System.out.println("Antes de informar de la victoria");
             for (Jugador j : jugadoresC) {
-                //		t.informarVictoria(jugadoress.get(0).getCliente().getPort());
                 ((JugadorPoker) j).informarVictoria(((JugadorPoker) ganador).getCliente().getPort());
+                if(((JugadorPoker) j).esGanador(((JugadorPoker) ganador).getCliente().getPort())){
+                    ((JugadorPoker) j).setCantidadTotal(((JugadorPoker) j).getCantidadTotal()+suma);
+                }
+                DataBase.setPuntos(j.getNombre(), j.getPassword(), ((JugadorPoker) j).getCantidadTotal());
             }
 
         }
@@ -187,7 +199,7 @@ public class JuegoPoker extends Juego {
         int posicion = 0;
         int max = 0;
         for (Jugador j : jugadoresC) {
-            System.out.println("jugadorC:"+((JugadorPoker) j).getNombre());
+            System.out.println("jugadorC:" + ((JugadorPoker) j).getNombre());
             if (((JugadorPoker) j).getValorJugada() > max) {
                 max = ((JugadorPoker) j).getValorJugada();
                 posicion = jugadoresC.indexOf(((JugadorPoker) j));
