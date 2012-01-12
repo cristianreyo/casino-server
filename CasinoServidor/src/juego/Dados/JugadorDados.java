@@ -29,7 +29,7 @@ public class JugadorDados extends Jugador {
         super(cliente);
         try {
             apuesta = 0; //Inicializo la apuesta
-            saldo = 1000;
+            saldo = 0;
             apuesta = 0;
             dis=new DataInputStream(cliente.getInputStream());
             dos=new DataOutputStream(cliente.getOutputStream());
@@ -43,7 +43,7 @@ public class JugadorDados extends Jugador {
         super(j);
         try {
             apuesta = 0; //Inicializo la apuesta
-            saldo = 1000;
+            saldo = 0;
             apuesta = 0;
             dis=new DataInputStream(cliente.getInputStream());
             dos=new DataOutputStream(cliente.getOutputStream());

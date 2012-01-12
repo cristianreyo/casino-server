@@ -3,6 +3,7 @@ package juego.Dados;
 import java.net.*;
 import java.util.*;
 import juego.Juego;
+import principal.DataBase;
 
 
 
@@ -55,6 +56,12 @@ public class JuegoDados extends Juego implements Runnable {
              resultadoG6=continuar;
              resultadoG8=continuar;
              ganador="";
+             
+             for(JugadorDados j:jugadoresC){
+                 int puntos=DataBase.getPuntos(j.getNombre(), j.getPassword());
+                 j.saldo=puntos;
+                 j.enviarSaldo();
+             }
             
             for(JugadorDados j:jugadoresC) {
                  pos=jugadoresC.indexOf(j);
@@ -139,6 +146,7 @@ public class JuegoDados extends Juego implements Runnable {
                                 else{
                                     j.enviaAviso("Losiento Losser!!! Has perdido");
                                 }
+                                DataBase.setPuntos(j.getNombre(), j.getPassword(), j.saldo);
                             }
                  }
               
