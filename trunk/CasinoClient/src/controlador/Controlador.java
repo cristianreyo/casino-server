@@ -42,6 +42,12 @@ public class Controlador {
     public void seleccionaJuego(String juego, CasinoView cv){
         this.casino.seleccionarJuego(juego);
         cv.showPanel(juego);
+        
+        //SI ES POKER CAMBIO TAMANIO DE VENTANA
+        if(juego.compareToIgnoreCase("poker")==0){
+            cv.setSize(1084, 468);
+            cv.setLocationRelativeTo(null);
+        }
     }
     
     public void ShowMensaje(String mensaje){

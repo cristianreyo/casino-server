@@ -10,7 +10,7 @@
  */
 package Vista;
 
-import controlador.Controlador;
+import controlador.ControladorCartaAlta;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -33,10 +33,10 @@ public class PanelCartaAlta extends javax.swing.JPanel implements Observer {
     Image imagen;
     Casino casino;
     Jugador jugador;
-    Controlador controller;
+    ControladorCartaAlta controller;
     
     /** Creates new form PanelCartaAlta */
-    public PanelCartaAlta(Casino casino, Controlador controller) {
+    public PanelCartaAlta(Casino casino, ControladorCartaAlta controller) {
         this.controller = controller;
         this.casino = casino;
         this.jugador = casino.getJugador();
@@ -242,7 +242,7 @@ private void BotonOtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             this.nombreJugador.setText(jugador.getNombre());
             this.puntuacion.setText(""+jugador.getPuntos());
             int actual =(Integer) apuesta.getValue();
-            System.out.println("Apuesta: "+actual);
+//            System.out.println("Apuesta: "+actual);
             SpinnerNumberModel model = (SpinnerNumberModel)apuesta.getModel();
             model.setMaximum(jugador.getPuntos());
             model.setValue(actual);
