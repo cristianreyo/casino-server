@@ -60,7 +60,7 @@ public class JugadorRuleta extends JPanel {
         
         //LEO LA IMAGEN DE FONDO
         try{
-            imagen = ImageIO.read(new File("imagenes/ruleta5.jpg"));
+            imagen = ImageIO.read(new File("imagenes/ruleta.jpg"));
         }catch(IOException e){
             e.printStackTrace();
         }
