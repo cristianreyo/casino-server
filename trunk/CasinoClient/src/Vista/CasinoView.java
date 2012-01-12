@@ -97,7 +97,7 @@ public class CasinoView extends javax.swing.JFrame implements Observer {
         
         
         //RULETA
-        this.PanelPrincipal.add(new JugadorRuleta(),"ruleta");
+        this.PanelPrincipal.add(new JugadorRuleta(casino),"ruleta");
         
     }
     

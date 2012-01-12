@@ -21,7 +21,7 @@ import javax.swing.ImageIcon;
 public class JPanelImagenFondo extends javax.swing.JPanel {
 
     /** Creates new form JPanelImagenFondo */
-    private ImageIcon imageIcon = new ImageIcon(getClass().getResource("/Imagenes/ruleta5.jpg"));
+    private ImageIcon imageIcon = new ImageIcon("imagenes/ruleta5.jpg");
     public JPanelImagenFondo() {
         initComponents();
         Dimension d= new Dimension(imageIcon.getIconWidth(), imageIcon.getIconHeight());

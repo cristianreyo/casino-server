@@ -10,18 +10,18 @@
  */
 package Vista;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.*;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import juego.Ruleta.Jugador;
+import modelo.Casino;
 
 
 
@@ -35,28 +35,46 @@ public class JugadorRuleta extends JPanel {
     int tipoApuesta;
     float apostado = 0;
     float resta = 0;
-    DataInputStream is;
-    DataOutputStream os;
+//    DataInputStream is;
+//    DataOutputStream os;
+    private Casino casino;  
+    private Image imagen;
+    
+    
+    
+    
     /** Creates new form JugadorRuleta */
-    public JugadorRuleta() {
+    public JugadorRuleta(final Casino casino) {
+        
+        
         setSize(427,530);
         initComponents();
         //getContentPane().setBackground(new java.awt.Color(0,153,0));  
         jButton39.setBackground(new java.awt.Color(153,0,0));
         jButton40.setBackground(new java.awt.Color(0,0,0));
-        JPanelImagenFondo j = new JPanelImagenFondo();
+        //JPanelImagenFondo j = new JPanelImagenFondo();
         final Jugador g = new Jugador(saldo);
-        this.add(j);
-        Socket servidor;
-        try {
-            servidor = new Socket("localhost", 12345); //Me conecto al servidor
-            is=new DataInputStream(servidor.getInputStream());//Creo un buffer de salida
-            os=new DataOutputStream(servidor.getOutputStream());//Creo un buffer de entrada
-        }catch (UnknownHostException e) {
-			e.printStackTrace();
-	} catch (IOException e) {
-			e.printStackTrace();
-	}
+        //this.add(j);
+        this.casino=casino;
+        
+        
+        //LEO LA IMAGEN DE FONDO
+        try{
+            imagen = ImageIO.read(new File("imagenes/ruleta5.jpg"));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+        
+//        Socket servidor;
+//        try {
+//            is=new DataInputStream(casino.getSocket().getInputStream());//Creo un buffer de salida
+//            os=new DataOutputStream(casino.getSocket().getOutputStream());//Creo un buffer de entrada
+//        }catch (UnknownHostException e) {
+//			e.printStackTrace();
+//	} catch (IOException e) {
+//			e.printStackTrace();
+//	}
         
         jComboBox1.setEnabled(false);
         jButton43.setText("APOSTAR");
@@ -67,6 +85,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 1;
@@ -85,6 +105,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 18;
@@ -102,6 +124,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 21;
@@ -119,6 +143,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 22;
@@ -136,6 +162,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 23;
@@ -153,6 +181,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 24;
@@ -170,6 +200,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 25;
@@ -187,6 +219,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 36;
@@ -204,6 +238,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 2;
@@ -221,6 +257,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 19;
@@ -238,6 +276,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 20;
@@ -255,6 +295,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 27;
@@ -272,6 +314,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 29;
@@ -289,6 +333,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 28;
@@ -306,6 +352,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 31;
@@ -323,6 +371,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 32;
@@ -340,6 +390,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 33;
@@ -357,6 +409,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 34;
@@ -374,6 +428,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 35;
@@ -391,6 +447,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 30;
@@ -408,6 +466,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 26;
@@ -425,6 +485,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 17;
@@ -442,6 +504,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 16;
@@ -459,6 +523,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 15;
@@ -476,6 +542,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 14;
@@ -493,6 +561,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 13;
@@ -510,6 +580,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 12;
@@ -527,6 +599,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 11;
@@ -544,6 +618,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 10;
@@ -561,6 +637,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 9;
@@ -578,6 +656,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 8;
@@ -595,6 +675,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 7;
@@ -612,6 +694,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 5;
@@ -629,6 +713,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 4;
@@ -646,6 +732,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 6;
@@ -663,6 +751,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 1;
                     int tipoApuesta = 3;
@@ -680,6 +770,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 3;
                     int tipoApuesta = 0;
@@ -697,6 +789,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 3;
                     int tipoApuesta = 1;
@@ -714,6 +808,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 2;
                     int tipoApuesta = 0;
@@ -731,6 +827,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 2;
                     int tipoApuesta = 1;
@@ -748,6 +846,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 4;
                     int tipoApuesta = 0;
@@ -765,6 +865,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 try {
                     int apuesta = 4;
                     int tipoApuesta = 1;
@@ -783,6 +885,8 @@ public class JugadorRuleta extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                DataInputStream is = casino.getIs();
+                DataOutputStream os = casino.getOs();
                 int indice = 0, bola = 0;
                 String mensaje = "";
                 boolean ganado;
@@ -835,6 +939,30 @@ public class JugadorRuleta extends JPanel {
         
         
     }
+   
+    
+    /**
+     * Sobre escribo el metodo pintar para que dibuje el panel con
+     * una imagen de fondo.
+     * 
+     * @param g 
+     */
+    @Override
+    public void paint(Graphics g) 
+    {
+        if (imagen != null) {
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+
+            setOpaque(false);
+        } else {
+            setOpaque(true);
+        }
+
+        super.paint(g);
+    }
+    
+    
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
