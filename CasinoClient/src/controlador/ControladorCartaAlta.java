@@ -52,6 +52,7 @@ public class ControladorCartaAlta {
         if(juego.compareToIgnoreCase("ruleta")==0){
             cv.setSize(427,530);
             cv.setLocationRelativeTo(null);
+            
         }
     }
     
@@ -71,10 +72,12 @@ public class ControladorCartaAlta {
         //OBTENGO CARTA
         carta = this.casino.getCarta_CartaAlta();
         carta_usuario.setIcon(new ImageIcon(carta.getRutaImage()) );
+        System.out.println(carta.getRutaImage());
         
         //OBTENGO CARTA DEL CRUPIER
         carta = this.casino.getCarta_CartaAlta();
         carta_crupier.setIcon(new ImageIcon(carta.getRutaImage()) );
+        System.out.println(carta.getRutaImage());
         
         
         //OBTENGO MENSAJE
