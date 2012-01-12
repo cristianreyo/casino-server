@@ -47,7 +47,7 @@ public class JugadorRuleta extends JPanel {
     public JugadorRuleta(final Casino casino) {
         
         
-        setSize(427,530);
+        //setSize(427,530);
         initComponents();
         //getContentPane().setBackground(new java.awt.Color(0,153,0));  
         jButton39.setBackground(new java.awt.Color(153,0,0));

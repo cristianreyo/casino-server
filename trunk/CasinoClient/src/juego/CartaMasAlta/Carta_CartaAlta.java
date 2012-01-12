@@ -67,6 +67,6 @@ public class Carta_CartaAlta implements Serializable{
     
     
     public String getRutaImage(){
-        return "Recursos/"+valor+"-"+tipo+".jpg";
+        return "Recursos/"+simbolo+"-"+tipo+".jpg";
     }
 }
