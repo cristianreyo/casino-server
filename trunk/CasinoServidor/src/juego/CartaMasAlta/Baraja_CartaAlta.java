@@ -20,16 +20,16 @@ public class Baraja_CartaAlta {
         
         cartas = new ArrayList<Carta_CartaAlta>();
         
-        for(i=0;i<=13;i++)
+        for(i=1;i<=13;i++)
             cartas.add(new Carta_CartaAlta("PICAS", i));
         
-        for(i=0;i<=13;i++)
+        for(i=1;i<=13;i++)
             cartas.add(new Carta_CartaAlta("CORAZONES", i));
         
-        for(i=0;i<=13;i++)
+        for(i=1;i<=13;i++)
             cartas.add(new Carta_CartaAlta("TREBOLES", i));
         
-        for(i=0;i<=13;i++)
+        for(i=1;i<=13;i++)
             cartas.add(new Carta_CartaAlta("ROMBOS", i));
     }
     
