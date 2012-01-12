@@ -7,7 +7,7 @@ package juego.poker;
 import general.Carta;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Vector;
+import java.util.*;
 import juego.Jugador;
 
 /**
@@ -29,6 +29,14 @@ public class JugadorPoker extends Jugador {
         cantidadTotal = 0; //Indico la cantidad total
         valorJugada = -1;
     }
+    
+    public JugadorPoker(Jugador j){
+        super(j);
+        apuesta = 0; //Inicializo la apuesta
+        cantidadTotal = 0; //Indico la cantidad total
+        valorJugada = -1;
+    }
+    
 
     public int getApuesta() {
         return apuesta;
@@ -51,7 +59,7 @@ public class JugadorPoker extends Jugador {
      * y luego las envio una a una
      * @param mesa
      */
-    public void enviarCartas(Vector<Carta> mesa) {
+    public void enviarCartas(ArrayList<Carta> mesa) {
         try {
             objectOut.writeInt(mesa.size()); //Envio el numero de cartas
             for (Carta c : mesa) {//Para cada carta que haya en el vector

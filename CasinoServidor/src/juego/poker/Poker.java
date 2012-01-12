@@ -7,8 +7,8 @@ import javax.swing.*;
 
 public class Poker {
 
-	public static boolean escaleraReal(JugadorPoker gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=new Vector<Carta>();
+	public static boolean escaleraReal(JugadorPoker gamer, ArrayList<Carta> mesa) {
+		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
 		todasCartas.clear();
 		todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
@@ -49,7 +49,7 @@ public class Poker {
 			return false;
 	}
 
-	public static boolean escaleraColor(JugadorPoker gamer, Vector<Carta> mesa) {
+	public static boolean escaleraColor(JugadorPoker gamer, ArrayList<Carta> mesa) {
 		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
 		todasCartas.clear();
 		todasCartas.add(mesa.get(0));
@@ -181,7 +181,7 @@ public class Poker {
 			return false;
 	}
 
-	public static boolean poker(JugadorPoker gamer, Vector<Carta> mesa) {
+	public static boolean poker(JugadorPoker gamer, ArrayList<Carta> mesa) {
 		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
 		todasCartas.clear();
 		todasCartas.add(mesa.get(0));
@@ -214,7 +214,7 @@ public class Poker {
 		return false;
 	}
 
-	public static boolean full(JugadorPoker gamer, Vector<Carta> mesa) {
+	public static boolean full(JugadorPoker gamer, ArrayList<Carta> mesa) {
 		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
 		todasCartas.clear();
 		todasCartas.add(mesa.get(0));
@@ -250,7 +250,7 @@ public class Poker {
 		return false;
 	}
 
-	public static boolean color(JugadorPoker gamer, Vector<Carta> mesa) {
+	public static boolean color(JugadorPoker gamer, ArrayList<Carta> mesa) {
 		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
 		todasCartas.clear();
 		todasCartas.add(mesa.get(0));
@@ -304,7 +304,7 @@ public class Poker {
 		return false;
 	}
 
-	public static boolean escalera(JugadorPoker gamer, Vector<Carta> mesa) {
+	public static boolean escalera(JugadorPoker gamer, ArrayList<Carta> mesa) {
 		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
 		todasCartas.clear();
 		todasCartas.add(mesa.get(0));
@@ -408,7 +408,7 @@ public class Poker {
 		}
 	}
 
-	public static boolean trio(JugadorPoker gamer, Vector<Carta> mesa) {
+	public static boolean trio(JugadorPoker gamer, ArrayList<Carta> mesa) {
 		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
 		todasCartas.clear();
 		todasCartas.add(mesa.get(0));
@@ -446,7 +446,7 @@ public class Poker {
 		}
 	}
 
-	public static boolean doblesParejas(JugadorPoker gamer, Vector<Carta> mesa) {
+	public static boolean doblesParejas(JugadorPoker gamer, ArrayList<Carta> mesa) {
 		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
 		todasCartas.clear();
 		todasCartas.add(mesa.get(0));
@@ -487,7 +487,7 @@ public class Poker {
 		}
 	}
 
-	public static boolean pareja(JugadorPoker gamer, Vector<Carta> mesa) {
+	public static boolean pareja(JugadorPoker gamer, ArrayList<Carta> mesa) {
 		ArrayList<Carta> todasCartas=new ArrayList<Carta>();
 		todasCartas.clear();
 		todasCartas.add(mesa.get(0));
@@ -528,8 +528,8 @@ public class Poker {
 		}
 	}
 
-	public static boolean cartaAlta(JugadorPoker gamer, Vector<Carta> mesa) {
-		Vector<Carta> todasCartas=mesa;
+	public static boolean cartaAlta(JugadorPoker gamer, ArrayList<Carta> mesa) {
+		ArrayList<Carta> todasCartas=mesa;
 		todasCartas.add(gamer.getCarta1());
 		todasCartas.add(gamer.getCarta2());
 		return false;

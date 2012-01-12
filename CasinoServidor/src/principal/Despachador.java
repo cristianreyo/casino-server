@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import juego.Casino;
 import juego.Jugador;
+import juego.poker.JugadorPoker;
 
 /**
  *
@@ -96,7 +97,10 @@ public class Despachador extends Thread{
             }
             else if(juego.equals(juegos.get(2))){ //DADOS
                 System.out.println(juego);
-                //Casino.createJuegoDados(cliente);
+                Casino.createJuegoDados(cliente);
+            }else{
+                //RULETA
+                
             }
             
             

@@ -8,20 +8,24 @@ package juego.Dados;
  *
  * @author Antonio
  */
-public class Dado {
-    
+public class Dado2 {
 
+    /**
+     * @param args the command line arguments
+     */
      private int valor;
-     
 
     public void setValor(int valor) {
         this.valor = valor;
-    }    
+    }
     
+    public Dado2() {
+    }
 
-    public int getValor() {
+   public int getValor() {
         return valor;
-    }  
+    }
+  
    
     
     public void tirar(){
