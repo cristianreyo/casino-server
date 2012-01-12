@@ -12,6 +12,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 import general.*;
@@ -21,7 +23,6 @@ public class ModeloPoker {
     private String cantidad; //Cantidad que apuesto
     private String puntosAc; //Puntos acumulados
     private String totalMesa; //La suma de las apuestas de los jugadores
-    //private Socket servidor;
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
     private Vector<Carta> cartasMesa = new Vector<Carta>();
@@ -44,68 +45,65 @@ public class ModeloPoker {
     }
 
     public void desconectar() {
-//        try {
-//            servidor.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public void apostar() {
         int apuesto = Integer.parseInt(cantidad);
         int total = Integer.parseInt(puntosAc);
         puntosAc = Integer.toString(total - apuesto);
-        try {
-            oos.writeObject(cantidad);
-            Integer a = (Integer) ois.readObject();
-            totalMesa = Integer.toString(a);
-            if (cartaMesa5.toString().compareTo("imagenes/trasera.jpg") == 0) {
-                int tamanoMesa = ois.readInt();// Obtengo el tamaño de la mesa (4)
-                // Recibo las cuatro cartas
-                cartasMesa.clear();
-                for (int i = 0; i < tamanoMesa; i++) {
-                    cartasMesa.add((Carta) ois.readObject());
-                }
-                System.out.println("Antes del tamaño igual a 4");
-                if (tamanoMesa == 4) {
+        if (Integer.parseInt(puntosAc) - apuesto > 0) {
+            try {
+                oos.writeObject(cantidad);
+                Integer a = (Integer) ois.readObject();
+                totalMesa = Integer.toString(a);
+                if (cartaMesa5.toString().compareTo("imagenes/trasera.jpg") == 0) {
+                    int tamanoMesa = ois.readInt();// Obtengo el tamaño de la mesa (4)
+                    // Recibo las cuatro cartas
+                    cartasMesa.clear();
+                    for (int i = 0; i < tamanoMesa; i++) {
+                        cartasMesa.add((Carta) ois.readObject());
+                    }
+                    System.out.println("Antes del tamaño igual a 4");
+                    if (tamanoMesa == 4) {
+                        cartaMesa1 = cartasMesa.get(0).getImagen();
+                        cartaMesa2 = cartasMesa.get(1).getImagen();
+                        cartaMesa3 = cartasMesa.get(2).getImagen();
+                        cartaMesa4 = cartasMesa.get(3).getImagen();
+                        cartaMesa5 = new ImageIcon("imagenes/trasera.jpg");
+                    } else if (tamanoMesa == 5) {
+                        cartaMesa1 = cartasMesa.get(0).getImagen();
+                        cartaMesa2 = cartasMesa.get(1).getImagen();
+                        cartaMesa3 = cartasMesa.get(2).getImagen();
+                        cartaMesa4 = cartasMesa.get(3).getImagen();
+                        cartaMesa5 = cartasMesa.get(4).getImagen();
+                    }
+                } else {
+                    String ganador = (String) ois.readObject();
+                    System.out.println(ganador);
+                    puntosAc = Integer.toString((Integer) ois.readObject());
+                    cartasMesa.clear();// Limpio las cartas
+                    int tamanoMesa = ois.readInt(); // Leo el numero de cartas a recibir
+                    // Recibo las cartas (3)
+                    for (int i = 0; i < tamanoMesa; i++) {
+                        cartasMesa.add((Carta) ois.readObject());
+                    }
+                    // Muestro por pantalla las cartas
                     cartaMesa1 = cartasMesa.get(0).getImagen();
                     cartaMesa2 = cartasMesa.get(1).getImagen();
                     cartaMesa3 = cartasMesa.get(2).getImagen();
-                    cartaMesa4 = cartasMesa.get(3).getImagen();
+                    cartaMesa4 = new ImageIcon("imagenes/trasera.jpg");
                     cartaMesa5 = new ImageIcon("imagenes/trasera.jpg");
-                } else if (tamanoMesa == 5) {
-                    cartaMesa1 = cartasMesa.get(0).getImagen();
-                    cartaMesa2 = cartasMesa.get(1).getImagen();
-                    cartaMesa3 = cartasMesa.get(2).getImagen();
-                    cartaMesa4 = cartasMesa.get(3).getImagen();
-                    cartaMesa5 = cartasMesa.get(4).getImagen();
+                    carta1 = (Carta) ois.readObject(); // Leo mi carta 1
+                    carta2 = (Carta) ois.readObject(); // Leo mi carta 2
+                    cartaMia1 = carta1.getImagen();
+                    cartaMia2 = carta2.getImagen();
+                    totalMesa = "0";
                 }
-            } else {
-                String ganador = (String) ois.readObject();
-                System.out.println(ganador);
-                puntosAc=Integer.toString((Integer)ois.readObject());
-                cartasMesa.clear();// Limpio las cartas
-                int tamanoMesa = ois.readInt(); // Leo el numero de cartas a recibir
-                // Recibo las cartas (3)
-                for (int i = 0; i < tamanoMesa; i++) {
-                    cartasMesa.add((Carta) ois.readObject());
-                }
-                // Muestro por pantalla las cartas
-                cartaMesa1 = cartasMesa.get(0).getImagen();
-                cartaMesa2 = cartasMesa.get(1).getImagen();
-                cartaMesa3 = cartasMesa.get(2).getImagen();
-                cartaMesa4 = new ImageIcon("imagenes/trasera.jpg");
-                cartaMesa5 = new ImageIcon("imagenes/trasera.jpg");
-                carta1 = (Carta) ois.readObject(); // Leo mi carta 1
-                carta2 = (Carta) ois.readObject(); // Leo mi carta 2
-                cartaMia1 = carta1.getImagen();
-                cartaMia2 = carta2.getImagen();
-                totalMesa = "0";
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
@@ -137,10 +135,10 @@ public class ModeloPoker {
                     cartaMesa5 = cartasMesa.get(4).getImagen();
                 }
             } else {
-                
+
                 String ganador = (String) ois.readObject();
                 System.out.println(ganador);
-                puntosAc=Integer.toString((Integer)ois.readObject());
+                puntosAc = Integer.toString((Integer) ois.readObject());
                 cartasMesa.clear();// Limpio las cartas
                 int tamanoMesa = ois.readInt(); // Leo el numero de cartas a recibir
                 // Recibo las cartas (3)
@@ -168,10 +166,8 @@ public class ModeloPoker {
 
     public void conectar() {
         try {
-            //servidor = new Socket("localhost", 12125);
-//            ois = new ObjectInputStream(servidor.getInputStream());//Creo el buffer de entrada
-//            oos = new ObjectOutputStream(servidor.getOutputStream());//Creo el buffer de salida
-            puntosAc=Integer.toString((Integer)ois.readObject());
+            puntosAc = Integer.toString((Integer) ois.readObject());
+            System.out.println(puntosAc);
             System.out.println("Antes de leer un numero");
             cartasMesa.clear();// Limpio las cartas
             int tamanoMesa = ois.readInt(); // Leo el numero de cartas a recibir
