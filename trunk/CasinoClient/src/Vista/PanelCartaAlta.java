@@ -20,8 +20,8 @@ import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.SpinnerNumberModel;
-import modelo.Casino;
-import modelo.Jugador;
+import general.Casino;
+import general.Jugador;
 
 /**
  *

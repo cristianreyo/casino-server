@@ -23,7 +23,7 @@ import java.util.Observer;
 import java.util.Properties;
 import juego.Dados.ModeloDados;
 import juego.Poker.ModeloPoker;
-import modelo.Casino;
+import general.Casino;
 
 /**
  *
