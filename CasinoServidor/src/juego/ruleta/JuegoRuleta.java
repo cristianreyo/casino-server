@@ -63,22 +63,10 @@ public class JuegoRuleta extends Juego implements Runnable {
         while (true) {
             clon.clear();
             clon = (ArrayList<Jugador>) jugadores.clone();  //Clono el vector, esto es porque no puedo iterar sobre un objeto que esta siendo modificado (excepcion de concurrencia)
-
-            posicion = rula.giraRuleta();
-            bola = numerosRuleta[posicion];
-            color = coloresRuleta[bola];
-
-            System.out.println("Color numero:" + posicion);
-
-            System.out.println("Color numero:" + color);
-
-            System.out.println("Numero bola:" + bola);
-            System.out.println("El contador:" + cont);//chivato
-
             for (Jugador c : clon) {//Para cada elemento del vector de sockets
                 try {
                     is = new DataInputStream(c.getSocket().getInputStream());//Inicializo el buffer con el socket correspondiente
-                    //entrada=is.readUTF();//Leo el dato del buffer
+                   
                     entrada = is.readInt();
                     System.out.println("Apuesta: " + entrada);//Lo muestro por pantalla
                     apuestas.add(entrada);//Lo anyado al vector de entrada
@@ -95,7 +83,12 @@ public class JuegoRuleta extends Juego implements Runnable {
                 }
 
             }
-            System.out.println("Variable ganaBanca:" + bola);
+            //Gira la ruleta y la bola cae en un número
+            posicion = rula.giraRuleta();
+            bola = numerosRuleta[posicion];
+            color = coloresRuleta[bola];
+            
+            //Gestión del resultado de la ruleta
             for (Jugador c : clon ) {
                 try {
                     if (bola <= 0) {
@@ -111,11 +104,11 @@ public class JuegoRuleta extends Juego implements Runnable {
                             int resultado = primeraApuesta(bola);
                             ganador = encontrarGanador(bola, cont);
                             if (ganador) {
-                                os.writeUTF("Ha ganado el jugador con apuesta: " + resultado);//Envio una cadena con el ganador
+                                os.writeUTF("Ha ganado el numero: " + resultado);//Envio una cadena con el ganador
                                 os.writeBoolean(ganador); //Enviar al cliente para indicarle al cliente que hacer con lo apostado
                                 os.writeFloat(cantidades.elementAt(cont));//devuelve saldo apostado por cada jugador en cliente
                             } else {
-                                os.writeUTF("Pierdes lo apostado");//Envio una cadena
+                                os.writeUTF("Pierde a numero");//Envio una cadena
                                 os.writeBoolean(ganador); //Enviar al cliente para indicarle al cliente que hacer con lo apostado
                                 os.writeFloat(cantidades.elementAt(cont));//devuelve saldo apostado por cada jugador en cliente
 
@@ -124,11 +117,11 @@ public class JuegoRuleta extends Juego implements Runnable {
                         if (apuestas.elementAt(cont) == 3) {
                             ganador = terceraApuesta(bola, cont);
                             if (ganador) {
-                                os.writeUTF("Ha ganado");//Envio una cadena con el ganador
+                                os.writeUTF("Gana a par/impar");//Envio una cadena con el ganador
                                 os.writeBoolean(ganador); //Enviar al cliente para indicarle al cliente que hacer con lo apostado
                                 os.writeFloat(cantidades.elementAt(cont));//devuelve saldo apostado por cada jugador en cliente
                             } else {
-                                os.writeUTF("Pierdes lo apostado");//Envio una cadena
+                                os.writeUTF("Pierde a par/impar");//Envio una cadena
                                 os.writeBoolean(ganador); //Enviar al cliente para indicarle al cliente que hacer con lo apostado
                                 os.writeFloat(cantidades.elementAt(cont));//devuelve saldo apostado por cada jugador en cliente
 
@@ -138,11 +131,11 @@ public class JuegoRuleta extends Juego implements Runnable {
                         if (apuestas.elementAt(cont) == 4) {
                             ganador = cuartaApuesta(bola, cont);
                             if (ganador) {
-                                os.writeUTF("Ha ganado");//Envio una cadena con el ganador
+                                os.writeUTF("Gana a bajos/altos");//Envio una cadena con el ganador
                                 os.writeBoolean(ganador); //Enviar al cliente para indicarle al cliente que hacer con lo apostado
                                 os.writeFloat(cantidades.elementAt(cont));//devuelve saldo apostado por cada jugador en cliente
                             } else {
-                                os.writeUTF("Pierdes lo apostado");//Envio una cadena
+                                os.writeUTF("Pierde a bajos/altos");//Envio una cadena
                                 os.writeBoolean(ganador); //Enviar al cliente para indicarle al cliente que hacer con lo apostado
                                 os.writeFloat(cantidades.elementAt(cont));//devuelve saldo apostado por cada jugador en cliente
 
@@ -152,36 +145,26 @@ public class JuegoRuleta extends Juego implements Runnable {
                         if (apuestas.elementAt(cont) == 2) {
                             ganador = segundaApuesta(color, cont);
                             if (ganador) {
-                                os.writeUTF("Gana");//Envio una cadena con el ganador
+                                os.writeUTF("Gana a color");//Envio una cadena con el ganador
                                 os.writeBoolean(ganador); //Enviar al cliente para indicarle al cliente que hacer con lo apostado
                                 os.writeFloat(cantidades.elementAt(cont));//devuelve saldo apostado por cada jugador en cliente
                                 System.out.println("apuesta ganada");
                             } else {
-                                os.writeUTF("Pierde");//Envio una cadena
+                                os.writeUTF("Pierde a color");//Envio una cadena
                                 os.writeBoolean(ganador); //Enviar al cliente para indicarle al cliente que hacer con lo apostado
                                 os.writeFloat(cantidades.elementAt(cont));//devuelve saldo apostado por cada jugador en cliente
                                 System.out.println("apuesta perdida");
 
 
                             }
-                            if (apuestas.elementAt(cont) == 5) { //ultimo añadido
-                                //c.close();
-                                //break;
-                                apuestas.remove(cont);
-                            }
                         }
                     }
                 } catch (IOException e) {
                 }
-                //System.out.println("El contador:"+cont);//chivato
                 cont++;
             }
-            System.out.println("El contador:" + cont);//chivato
-            //cont++;
-
-            System.out.println("Numero ruleta:" + bola);
-
-
+            
+            //Mensaje de la bola en el area de texto por color
             if (bola > 0) {
                 if (coloresRuleta[bola]) {
                     System.out.println("(negro)");
@@ -203,10 +186,7 @@ public class JuegoRuleta extends Juego implements Runnable {
             } catch (IOException e) {
             }
             clon.clear();//limpio el vector clon;
-            //apuestas.clear(); //Limpio el vector de los datos de entrada
-            //cantidades.clear();
-            //tipoApuestas.clear();
-            //sockets.clear();
+            
         }
     }
 
@@ -215,7 +195,7 @@ public class JuegoRuleta extends Juego implements Runnable {
      *
      * @return
      */
-    private int primeraApuesta(int bola) { //Tendré que calcular para cada jugador si tienen la primera apuesta y han acertado el nº de la ruleta
+    private int primeraApuesta(int bola) { 
         int resultado = 0;
         for (int numero : tipoApuestas) {
             if (numero == bola) {
@@ -227,31 +207,21 @@ public class JuegoRuleta extends Juego implements Runnable {
     }
 
     private boolean segundaApuesta(boolean color, int cont) {
-        boolean resultado = false;
-        //System.out.println("Aqui llego");
+        boolean resultado = false;      
         if (tipoApuestas.elementAt(cont) == 0 && color == false) {
             resultado = true;
-            System.out.println("Rojo");
-
         } else if (tipoApuestas.elementAt(cont) == 1 && color == true) {
             resultado = true;
-            System.out.println("Negro");
-        } else {
-            System.out.println("Elemento:" + tipoApuestas.elementAt(cont) + " Y color:" + color);
-        }
+        } 
         return resultado;
     }
 
     private boolean terceraApuesta(int bola, int cont) {
         boolean resultado = false;
-        //System.out.println("Aqui llego");
         if (tipoApuestas.elementAt(cont) == 0 && bola % 2 == 0) {
-            resultado = true;
-            //System.out.println("Aqui tambien");  
-
+            resultado = true;  
         } else if (tipoApuestas.elementAt(cont) == 1 && bola % 2 != 0) {
             resultado = true;
-            //System.out.println("Aqui tambien"); 
         }
         return resultado;
     }
