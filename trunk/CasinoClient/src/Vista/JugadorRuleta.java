@@ -38,7 +38,7 @@ public class JugadorRuleta extends JPanel {
     DataInputStream is;
     DataOutputStream os;
     /** Creates new form JugadorRuleta */
-    public JugadorRuleta() throws UnknownHostException {
+    public JugadorRuleta() {
         setSize(427,530);
         initComponents();
         //getContentPane().setBackground(new java.awt.Color(0,153,0));  
@@ -1638,49 +1638,7 @@ public class JugadorRuleta extends JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton43ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    static final int CUADRADOS = 38;
-    public static void main(String args[]) throws IOException {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JugadorRuleta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JugadorRuleta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JugadorRuleta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JugadorRuleta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-           
-
-            public void run() {
-                try {
-                    new JugadorRuleta().setVisible(true);
-                    
-                } catch (UnknownHostException ex) {
-                    Logger.getLogger(JugadorRuleta.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-            }
-        });
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
