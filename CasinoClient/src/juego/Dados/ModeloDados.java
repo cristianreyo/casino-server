@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class ModeloDados {
 
-    private ObjectInputStream ois;
-    private ObjectOutputStream oos;
+    private DataInputStream ois;
+    private DataOutputStream oos;
     Socket s;
     private int saldo;
     private int d1;
@@ -31,11 +31,11 @@ public class ModeloDados {
     int apuesta;
     int eleccion;
 
-    public void setOis(ObjectInputStream ois) {
+    public void setOis(DataInputStream ois) {
         this.ois = ois;
     }
 
-    public void setOos(ObjectOutputStream oos) {
+    public void setOos(DataOutputStream oos) {
         this.oos = oos;
     }
 
