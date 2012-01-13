@@ -1,9 +1,12 @@
 package Vista;
 
+import java.awt.Graphics;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import juego.Dados.ModeloDados;
@@ -13,7 +16,33 @@ public class InterfazDados extends JPanel {
     /** Creates new form InterfazDados */
     ArrayList<ImageIcon> listaImagenes = new ArrayList<ImageIcon>();
     DlgApuestas dlg;
+    private int saldo;
+     ImageIcon imageIcon;
 
+    public DlgApuestas getDlg() {
+        return dlg;
+    }
+
+    public void setDlg(DlgApuestas dlg) {
+        this.dlg = dlg;
+    }
+
+    public JButton getjButton3_apostar() {
+        return jButton3_apostar;
+    }
+
+    public void setjButton3_apostar(JButton jButton3_apostar) {
+        this.jButton3_apostar = jButton3_apostar;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+     
     public InterfazDados(ModeloDados modelo) {
 
         initComponents();
@@ -33,13 +62,23 @@ public class InterfazDados extends JPanel {
         listaImagenes.add(imagen6);
 
 
-        JPanelBackground j = new JPanelBackground();
-        dlg = new DlgApuestas((JFrame)this.getParent(), true);
-
-
-        this.add(j);
+        imageIcon= new ImageIcon("imagenes/craps-table.gif");
         
+        dlg = new DlgApuestas((JFrame)this.getParent(), true, modelo);
+    }
+    
+    @Override
+     public void paint(Graphics g) 
+    {
+        if (imageIcon != null) {
+            g.drawImage(imageIcon.getImage(), 0, 0, getWidth(), getHeight(), this);
 
+            setOpaque(false);
+        } else {
+            setOpaque(true);
+        }
+
+        super.paint(g);
     }
 
     public void addApuestaListener(ActionListener mal) {
@@ -77,6 +116,20 @@ public class InterfazDados extends JPanel {
 
     public void setVisibleDlg() {
         dlg.setVisible(true);
+    }
+
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+        try{
+            dlg.setSaldo(saldo);
+        }
+           catch(Exception e){
+                
+            }
     }
 
     @SuppressWarnings("unchecked")

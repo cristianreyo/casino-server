@@ -30,6 +30,7 @@ public class ModeloDados {
     int tipoApuesta;
     int apuesta;
     int eleccion;
+    String apostado;
 
     public void setOis(DataInputStream ois) {
         this.ois = ois;
@@ -39,18 +40,25 @@ public class ModeloDados {
         this.oos = oos;
     }
 
+    public void recibePrimeroDatos(){
+         System.out.println("Recibiendo posicion...");
+        try {
+            pos = ois.readInt();
+                    System.out.println("Recibiendo saldo...");
+            saldo = ois.readInt();
+
+        } catch (IOException ex) {
+            Logger.getLogger(ModeloDados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+   
     public void apostar() {
         try {
 
             
-            System.out.println("Recibiendo posicion...");
-
-            pos = ois.readInt();
-
-            System.out.println("Recibiendo saldo...");
-
-            saldo = ois.readInt();
-
+           
+            
             System.out.println("Saldo actual: " + saldo);
 
             oos.writeInt(tipoApuesta);
@@ -128,4 +136,6 @@ public class ModeloDados {
     int getControl() {
         return control;
     }
+
+    
 }

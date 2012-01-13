@@ -19,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.net.*;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import juego.Ruleta.Jugador;
 import general.Casino;
@@ -39,6 +41,70 @@ public class JugadorRuleta extends JPanel {
 //    DataOutputStream os;
     private Casino casino;  
     private Image imagen;
+
+    public JButton getjButton37() {
+        return jButton37;
+    }
+
+    public void setjButton37(JButton jButton37) {
+        this.jButton37 = jButton37;
+    }
+
+    public JButton getjButton38() {
+        return jButton38;
+    }
+
+    public void setjButton38(JButton jButton38) {
+        this.jButton38 = jButton38;
+    }
+
+    public JButton getjButton39() {
+        return jButton39;
+    }
+
+    public void setjButton39(JButton jButton39) {
+        this.jButton39 = jButton39;
+    }
+
+    public JButton getjButton40() {
+        return jButton40;
+    }
+
+    public void setjButton40(JButton jButton40) {
+        this.jButton40 = jButton40;
+    }
+
+    public JButton getjButton41() {
+        return jButton41;
+    }
+
+    public void setjButton41(JButton jButton41) {
+        this.jButton41 = jButton41;
+    }
+
+    public JButton getjButton42() {
+        return jButton42;
+    }
+
+    public void setjButton42(JButton jButton42) {
+        this.jButton42 = jButton42;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
     
     
     

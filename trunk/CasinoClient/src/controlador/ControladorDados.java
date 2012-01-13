@@ -5,6 +5,7 @@
 package controlador;
 
 import Vista.InterfazDados;
+import general.Casino;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataInputStream;
@@ -14,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import juego.Dados.ModeloDados;
-import general.Casino;
 
 /**
  *
@@ -27,7 +27,7 @@ public class ControladorDados {
     private int pos;
     private int control;
     private Casino casino;
-
+    private int saldo;
     public ControladorDados(ModeloDados modelo, InterfazDados vista, Casino casino) {
         this.modelo = modelo;
         this.vista = vista;
@@ -41,21 +41,24 @@ public class ControladorDados {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                modelo.setTipoApuesta(vista.getTipoApuesta());
 
                 modelo.setOis(new DataInputStream(casino.getSocket().getInputStream()));
                 modelo.setOos(new DataOutputStream(casino.getSocket().getOutputStream()));
 
-                modelo.setApuesta(vista.getApuesta());
+               
+                modelo.recibePrimeroDatos();
+                vista.setSaldo(saldo);
+                                System.out.println("saldo:   " + modelo.getSaldo());
                 vista.setVisibleDlg();
-                modelo.setTipoApuesta(vista.getTipoApuesta());
                 modelo.setApuesta(vista.getApuesta());
+                modelo.setTipoApuesta(vista.getTipoApuesta());
+               
                 modelo.apostar();
-                System.out.println("" + modelo.getSaldo());
                 System.out.println("" + vista.getApuesta());
                 vista.setTextSaldo(modelo.getSaldo() - vista.getApuesta());
+                
                 pos = modelo.getPos();
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(ControladorDados.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -77,7 +80,8 @@ public class ControladorDados {
                     modelo.tirar();
                     vista.cambiarImagenDados(modelo.getD1(), modelo.getD2());
                 }
-            } catch (IOException ex) {
+                vista.setSaldo(modelo.getSaldo());
+            } catch (Exception ex) {
                 Logger.getLogger(ControladorDados.class.getName()).log(Level.SEVERE, null, ex);
             }
 

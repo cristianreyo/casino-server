@@ -10,8 +10,6 @@ package controlador;
  */
 import Vista.InterfazPoker;
 import java.awt.event.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import juego.Poker.ModeloPoker;
 import general.Casino;
 
@@ -25,6 +23,7 @@ public class ControladorPoker {
         this.modelo = modelo;
         this.vista = vista;
         this.casino = casino;
+         
         vista.addApuestaListener(new ApuestaListener());
         vista.addPasoListener(new PasoListener());
         vista.addRestoListener(new RestoListener());
@@ -50,6 +49,7 @@ public class ControladorPoker {
                 vista.setCantidad(modelo.getCantidad());
                 vista.setPuntosAcumulados(modelo.getPuntosAc());
                 vista.setTotalMesa(modelo.getTotalMesa());
+                System.out.println("Voy a suspender");
                 suspend();
             }
         }
@@ -60,6 +60,7 @@ public class ControladorPoker {
                 start();
                 System.out.println("He hecho un nuevo start()");
             } catch (Exception ek) {
+                System.out.println("He hecho un nuevo resume()");
                 resume();
 
             }
