@@ -19,6 +19,8 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.SpinnerNumberModel;
 import general.Casino;
 import general.Jugador;
@@ -34,6 +36,46 @@ public class PanelCartaAlta extends javax.swing.JPanel implements Observer {
     Casino casino;
     Jugador jugador;
     ControladorCartaAlta controller;
+
+    public JButton getBotonJugar() {
+        return BotonJugar;
+    }
+
+    public void setBotonJugar(JButton BotonJugar) {
+        this.BotonJugar = BotonJugar;
+    }
+
+    public JButton getBotonOtra() {
+        return BotonOtra;
+    }
+
+    public void setBotonOtra(JButton BotonOtra) {
+        this.BotonOtra = BotonOtra;
+    }
+
+    public JLabel getLabelApuesta() {
+        return LabelApuesta;
+    }
+
+    public void setLabelApuesta(JLabel LabelApuesta) {
+        this.LabelApuesta = LabelApuesta;
+    }
+
+    public JLabel getLabelJugador() {
+        return LabelJugador;
+    }
+
+    public void setLabelJugador(JLabel LabelJugador) {
+        this.LabelJugador = LabelJugador;
+    }
+
+    public JLabel getLabelPuntos() {
+        return LabelPuntos;
+    }
+
+    public void setLabelPuntos(JLabel LabelPuntos) {
+        this.LabelPuntos = LabelPuntos;
+    }
     
     /** Creates new form PanelCartaAlta */
     public PanelCartaAlta(Casino casino, ControladorCartaAlta controller) {

@@ -10,7 +10,6 @@
  */
 package Vista;
 
-
 import controlador.ControladorCartaAlta;
 import controlador.ControladorDados;
 import controlador.ControladorPoker;
@@ -34,91 +33,104 @@ public class CasinoView extends javax.swing.JFrame implements Observer {
     private int idioma;
     private Casino casino;
     private ControladorCartaAlta controller;
+    private IdiomaView idiomaVista;
+    ModeloPoker model_pok;
+    InterfazPoker vistaPoker;
+    ModeloDados model_dados; 
+    InterfazDados view_dados;
+    JugadorRuleta vistaRuleta;
+    PanelCartaAlta vistaCartaAlta;
     
+    public IdiomaView getIdiomaVista() {
+        return idiomaVista;
+    }
 
     /** Creates new form Casino */
     public CasinoView(Casino casino, ControladorCartaAlta controller) {
-        this.casino=casino;
+        this.casino = casino;
         this.controller = controller;
         
+        model_pok = new ModeloPoker();
+        vistaPoker = new InterfazPoker(model_pok);
+        model_dados = new ModeloDados();
+        view_dados = new InterfazDados(model_dados);
+        vistaRuleta=new JugadorRuleta(casino);
+        vistaCartaAlta=new PanelCartaAlta(casino, controller);
         //INCIALIAZO LOS COMPONENTES
         initComponents();
-        
-        
+
+
         //CENTRO LA VENTANA EN PANTALLA
         this.setLocationRelativeTo(null);
-        
+
         //OBTENGO IDIOMA POR DEFECTO
         InputStream f;
         Properties defProps = new Properties();
-        idioma=0;
-        try{            
+        idioma = 0;
+        try {            
             f = new FileInputStream("Recursos/config.properties");
             defProps.load(f);
             idioma = Integer.parseInt(defProps.getProperty("default_languaje"));
             f.close();            
-        }catch(IOException e){
+        } catch (IOException e) {
             System.err.println("Error al leer de config.properties");
         }
-        
+
         //CARGO LA VISTA CON EL IDIOMA POR DEFECTO
         this.CargarIdioma();
-        
+
         //AGREGO PANELES
         CargarPaneles();
-        
+
         //AGREGO A ESTA CLASE COMO OBSERVADORA DE CASINO
         this.casino.addObserver(this);
     }
     
-    public void showPanel(String panel){
-        CardLayout cl = (CardLayout)(PanelPrincipal.getLayout());
+    public void showPanel(String panel) {
+        CardLayout cl = (CardLayout) (PanelPrincipal.getLayout());
         cl.next(PanelPrincipal);
         cl.show(PanelPrincipal, panel);
     }
-    
-    private void CargarPaneles(){
-        this.PanelPrincipal.add(new PanelLogin(idioma,controller,this),"login");
-        this.PanelPrincipal.add(new PanelSelectGame(idioma,controller,casino,this),"selectgame");
-        this.PanelPrincipal.add(new PanelCartaAlta(casino,controller),"carta_alta");
+   
+    private void CargarPaneles() {
+        this.PanelPrincipal.add(new PanelLogin(idioma, controller, this), "login");
+        this.PanelPrincipal.add(new PanelSelectGame(idioma, controller, casino, this), "selectgame");
         
+        this.PanelPrincipal.add(vistaCartaAlta, "carta_alta");
+
         //POKER
-        ModeloPoker model_pok = new ModeloPoker();
-        InterfazPoker view_pok = new InterfazPoker(model_pok);
-        ControladorPoker control = new ControladorPoker(model_pok, view_pok,casino);
-        this.PanelPrincipal.add(view_pok,"poker");
-        
-        
+        ControladorPoker control = new ControladorPoker(model_pok, vistaPoker, casino);
+        this.PanelPrincipal.add(vistaPoker, "poker");
+
+
         //DADOS
-        ModeloDados model_dados = new ModeloDados();
-        InterfazDados view_dados = new InterfazDados(model_dados);
-        ControladorDados control_dados = new ControladorDados(model_dados, view_dados,casino);
-        this.PanelPrincipal.add(view_dados,"dados");
-        
-        
+        ControladorDados control_dados = new ControladorDados(model_dados, view_dados, casino);
+        this.PanelPrincipal.add(view_dados, "dados");
+
+
         //RULETA
-        this.PanelPrincipal.add(new JugadorRuleta(casino),"ruleta");
+        this.PanelPrincipal.add(vistaRuleta, "ruleta");
         
     }
     
-    private void CargarIdioma(){
-        String fichero="";
+    private void CargarIdioma() {
+        String fichero = "";
         InputStream f;
         Properties defProps = new Properties();
         
-        switch(idioma){            
+        switch (idioma) {            
             case 0: //ESPANOL
                 fichero = "Recursos/lenguajes_es_ES.properties";
                 break;
-                
+            
             case 1: //INGLES
                 fichero = "Recursos/lenguajes_en_GB.properties";
                 break;
         }
-        
-        
+
+
         //CONFIGURO LA INTERFAZ EN FUNCION DEL IDIOMA
-        try{            
+        try {            
             f = new FileInputStream(fichero);
             defProps.load(f);
             
@@ -127,16 +139,45 @@ public class CasinoView extends javax.swing.JFrame implements Observer {
             this.MenuConexion.setText(defProps.getProperty("connection"));
             this.MenuIdioma.setText(defProps.getProperty("languaje"));
             this.MenuAcercade.setText(defProps.getProperty("about"));
+            //Modifico los labels de la interfaz del poker
+            vistaPoker.getBtnConectar().setText(defProps.getProperty("Comenzar"));
+            vistaPoker.getBtnApuesto().setText(defProps.getProperty("Apuesto"));
+            vistaPoker.getBtnPaso().setText(defProps.getProperty("Paso"));
+            vistaPoker.getBtnResto().setText(defProps.getProperty("Resto"));
+            vistaPoker.getLblCantidadAApostar().setText(defProps.getProperty("Apostar"));
+            vistaPoker.getLblPuntos().setText(defProps.getProperty("PuntosAcumulados"));
+            vistaPoker.getLblTotalEnLa().setText(defProps.getProperty("TotalMesa"));
+            //Modifico los labels de la interfaz de los dados
+            view_dados.getjLabel1().setText(defProps.getProperty("Saldo"));
+            view_dados.getjButton3_apostar().setText(defProps.getProperty("Apostar"));
+            view_dados.getDlg().getjLabel1().setText(defProps.getProperty("IntroduzcaCantidadApostar"));
+            view_dados.getDlg().getjLabel2().setText(defProps.getProperty("ElijaApuestaRealizar"));
+            view_dados.getDlg().getjButton2().setText(defProps.getProperty("Aceptar")); 
+            //Modifico los labels de la interfaz de la ruleta
+            vistaRuleta.getjLabel1().setText(defProps.getProperty("SaldoDisponible"));
+            vistaRuleta.getjLabel2().setText(defProps.getProperty("CantidadApuesta"));
+            vistaRuleta.getjButton37().setText(defProps.getProperty("Par"));
+            vistaRuleta.getjButton38().setText(defProps.getProperty("Impar"));
+            vistaRuleta.getjButton39().setText(defProps.getProperty("Rojo"));
+            vistaRuleta.getjButton40().setText(defProps.getProperty("Negro"));
+            vistaRuleta.getjButton41().setText(defProps.getProperty("Bajos"));
+            vistaRuleta.getjButton42().setText(defProps.getProperty("Altos"));
+            //Modifico los labels de la carta mas alta
+            vistaCartaAlta.getLabelApuesta().setText(defProps.getProperty("Apuesta"));
+            vistaCartaAlta.getLabelJugador().setText(defProps.getProperty("Jugador"));
+            vistaCartaAlta.getLabelPuntos().setText(defProps.getProperty("Puntos"));
+            vistaCartaAlta.getBotonJugar().setText(defProps.getProperty("Jugar"));
+            vistaCartaAlta.getBotonOtra().setText(defProps.getProperty("OtraVez"));
             
             f.close();
-        }catch(IOException e){
+        } catch (IOException e) {
             System.err.println("Error al cargar idioma por defecto");
         }
     }
-    
+
     //ESTABLECE EL IDIOMA Y ACTUALIZA LA INTERFAZ
-    public void setIdioma(int idioma){
-        this.idioma=idioma;
+    public void setIdioma(int idioma) {
+        this.idioma = idioma;
         this.CargarIdioma();
     }
 
@@ -244,22 +285,31 @@ public class CasinoView extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void MenuIdiomaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuIdiomaMouseReleased
+public void MenuIdiomaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuIdiomaMouseReleased
     //LANZA EL JDIALOG PARA SELECCION DE IDIOMA
-    new IdiomaView(this, rootPaneCheckingEnabled,idioma).setVisible(true);
+    new IdiomaView(this, rootPaneCheckingEnabled, idioma).setVisible(true);
 }//GEN-LAST:event_MenuIdiomaMouseReleased
-
+    
+    public void setIdiomaVista(IdiomaView idiomaVista) {
+        this.idiomaVista = idiomaVista;
+        System.out.println(idiomaVista == null);
+//        vistaPoker.getBtnConectar().setText(idiomaVista.getDefProps().getProperty("Comenzar"));
+//        vistaPoker.getBtnApuesto().setText(idiomaVista.getDefProps().getProperty("Apuesto"));
+//        vistaPoker.getBtnPaso().setText(idiomaVista.getDefProps().getProperty("Paso"));
+//        vistaPoker.getBtnResto().setText(idiomaVista.getDefProps().getProperty("Resto"));
+//        vistaPoker.getLblCantidadAApostar().setText(idiomaVista.getDefProps().getProperty("Apostar"));
+//        vistaPoker.getLblPuntos().setText(idiomaVista.getDefProps().getProperty("PuntosAcumulados"));
+//        vistaPoker.getLblTotalEnLa().setText(idiomaVista.getDefProps().getProperty("TotalMesa"));
+    }
 private void MenuConexionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuConexionMouseReleased
     //LANZA EL JDIALOG DE CONFIGURACION DE CONEXION
-    new ConexionView(this, rootPaneCheckingEnabled,idioma).setVisible(true);
+    new ConexionView(this, rootPaneCheckingEnabled, idioma).setVisible(true);
 }//GEN-LAST:event_MenuConexionMouseReleased
-
+    
 private void MenuAcercadeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAcercadeMouseReleased
     //LANZA EL JDIALOG CON INFORMACION SOBRE LOS CREADORES
-    new AboutView(this, rootPaneCheckingEnabled,idioma).setVisible(true);
+    new AboutView(this, rootPaneCheckingEnabled, idioma).setVisible(true);
 }//GEN-LAST:event_MenuAcercadeMouseReleased
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarraMenu;
     private javax.swing.JLabel LabelInfo;
@@ -275,11 +325,9 @@ private void MenuAcercadeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIR
     @Override
     public void update(Observable o, Object o1) {
         
-        if(o == this.casino){
+        if (o == this.casino) {
             this.info.setText(casino.getMensaje());
         }
         
     }
-    
-    
 }

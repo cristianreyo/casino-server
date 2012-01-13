@@ -11,7 +11,13 @@
 package Vista;
 
 import java.awt.event.KeyEvent;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+import juego.Dados.ModeloDados;
 
 /**
  *
@@ -19,13 +25,41 @@ import javax.swing.JOptionPane;
  */
 public class DlgApuestas extends javax.swing.JDialog {
 
-     int apuesta;
-     int tipoApuesta;
-    
+    int apuesta;
+    int tipoApuesta;
+    int saldo;
+    String apostado;
+     ModeloDados modelo;
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JButton getjButton2() {
+        return jButton2;
+    }
+
+    public void setjButton2(JButton jButton2) {
+        this.jButton2 = jButton2;
+    }
+     
     /** Creates new form DlgApuestas */
-    public DlgApuestas(java.awt.Frame parent, boolean modal) {
+    public DlgApuestas(java.awt.Frame parent, boolean modal, ModeloDados modelo) {
         super(parent, modal);
         initComponents();
+        this.modelo=modelo;
         jComboBox_TipoApuesta.addItem("Linea de Pase");//0
         jComboBox_TipoApuesta.addItem("Linea de No Pase");//1
         jComboBox_TipoApuesta.addItem("Zona");//2
@@ -37,11 +71,9 @@ public class DlgApuestas extends javax.swing.JDialog {
         jComboBox_TipoApuesta.addItem("Tres ");//8
         jComboBox_TipoApuesta.addItem("Doce ");//9
         jComboBox_TipoApuesta.addItem("Once ");//10
-       
-      
+        apostado="";
         
     }
-
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -100,13 +132,11 @@ public class DlgApuestas extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jTextField_Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField_Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jComboBox_TipoApuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -121,9 +151,9 @@ public class DlgApuestas extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField_Apuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox_TipoApuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,81 +171,53 @@ private void jTextField_ApuestaActionPerformed(java.awt.event.ActionEvent evt) {
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-       String aux=jTextField_Apuesta.getText();
-     
-       apuesta=Integer.parseInt(aux);
-     
-       tipoApuesta= jComboBox_TipoApuesta.getSelectedIndex();
-       
-       dispose();
+    String aux = jTextField_Apuesta.getText();
+
+    apuesta = Integer.parseInt(aux);
+
+    tipoApuesta = jComboBox_TipoApuesta.getSelectedIndex();
+    apostado="";
+    dispose();
 }//GEN-LAST:event_jButton2ActionPerformed
 
 private void jComboBox_TipoApuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_TipoApuestaActionPerformed
-
 }//GEN-LAST:event_jComboBox_TipoApuestaActionPerformed
 
 private void jTextField_ApuestaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_ApuestaKeyTyped
-    int k=(int)evt.getKeyChar();
-   
-    if (k >= 97 && k <= 122 || k>=65 && k<=90){
-        evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-        JOptionPane.showMessageDialog(null,"No puede ingresar letras!!!","Ventana Error Datos",JOptionPane.ERROR_MESSAGE);
-    }
-    if(k==241 || k==209){
-        evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-        JOptionPane.showMessageDialog(null,"No puede ingresar letras!!!","Ventana Error Datos",JOptionPane.ERROR_MESSAGE);
-    }
     
-    if(k==10){
+        char type =  evt.getKeyChar();
+        int k = (int) type;
+               apostado= apostado + type;
+        
+    
+    if (k >= 97 && k <= 122 || k >= 65 && k <= 90) {
+        evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+        apostado="";
+        JOptionPane.showMessageDialog(null, "No puede ingresar letras!!!", "Ventana Error Datos", JOptionPane.ERROR_MESSAGE);
+    }
+    if (k == 241 || k == 209) {
+        evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+        apostado="";
+        JOptionPane.showMessageDialog(null, "No puede ingresar letras!!!", "Ventana Error Datos", JOptionPane.ERROR_MESSAGE);
+    }
+    //saldo=modelo.getSaldo
+   
+//   System.out.println(modelo.getSaldo());
+   System.out.println(Integer.parseInt(apostado));
+     int as= Integer.parseInt(apostado);
+     
+   if(modelo.getSaldo() < as){
+       evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+       JOptionPane.showMessageDialog(null, "No tienes dineroo suficiente!!!", "Ventana Error Datos", JOptionPane.ERROR_MESSAGE);
+   }
+
+    if (k == 10) {
         jTextField_Apuesta.transferFocus();
+       
     }
+
 }//GEN-LAST:event_jTextField_ApuestaKeyTyped
-
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DlgApuestas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DlgApuestas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DlgApuestas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DlgApuestas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                DlgApuestas dialog = new DlgApuestas(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -224,4 +226,13 @@ private void jTextField_ApuestaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField_Apuesta;
     // End of variables declaration//GEN-END:variables
+
+    void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
+    
+    void setValorMaximo(){
+       
+       
+    }
 }

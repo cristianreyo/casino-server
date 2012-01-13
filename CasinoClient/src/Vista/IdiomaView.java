@@ -27,38 +27,43 @@ import javax.imageio.ImageIO;
  */
 public class IdiomaView extends javax.swing.JDialog {
 
-    
     //IMAGEN DE FONDO
     Image imagen;
-    
+    private Properties defProps;
+
+    public Properties getDefProps() {
+        return defProps;
+    }
+
     /** Creates new form IdiomaView */
     public IdiomaView(java.awt.Frame parent, boolean modal, int idioma) {
         super(parent, modal);
         initComponents();
-        
+        CasinoView a = (CasinoView) parent;
+        a.setIdiomaVista(this);
         //LEO LA IMAGEN DE FONDO
-        try{
-            switch(idioma){
+        try {
+            switch (idioma) {
                 case 0://ESPANOL
                     imagen = ImageIO.read(new File("Recursos/espana.jpg"));
                     break;
-                   
+
                 case 1://INGLES
                     imagen = ImageIO.read(new File("Recursos/inglaterra.jpeg"));
                     break;
             }
-        
-        }catch(IOException e){
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         //CENTRO EN LA PANTALLA DE APLICACION
         this.setLocationRelativeTo(parent);
-        
+
         //CARGO EL IDIOMA
         CargarIdioma(idioma);
     }
-    
+
     /**
      * Sobre escribo el metodo pintar para que dibuje el panel con
      * una imagen de fondo.
@@ -66,46 +71,45 @@ public class IdiomaView extends javax.swing.JDialog {
      * @param g 
      */
     @Override
-    public void paint(Graphics g) 
-    {
+    public void paint(Graphics g) {
         if (imagen != null) {
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-            
-        } 
+
+        }
 
         super.paint(g);
-       
+
     }
-    
-    private void CargarIdioma(int idioma){
-        String fichero="";
+
+    private void CargarIdioma(int idioma) {
+        String fichero = "";
         InputStream f;
-        Properties defProps = new Properties();
-        
-        switch(idioma){            
+        defProps = new Properties();
+
+        switch (idioma) {
             case 0: //ESPANOL
                 fichero = "Recursos/lenguajes_es_ES.properties";
                 break;
-                
+
             case 1: //INGLES
                 fichero = "Recursos/lenguajes_en_GB.properties";
                 break;
         }
-        
-        
+
+
         //CONFIGURO LA INTERFAZ EN FUNCION DEL IDIOMA
-        try{            
+        try {
             f = new FileInputStream(fichero);
             defProps.load(f);
-            
+
             this.BotonEstablecer.setText(defProps.getProperty("set"));
             this.LabelSelectLanguaje.setText(defProps.getProperty("select_languaje"));
-            ListIdiomas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { defProps.getProperty("spanish"), defProps.getProperty("english")}));
+            ListIdiomas.setModel(new javax.swing.DefaultComboBoxModel(new String[]{defProps.getProperty("spanish"), defProps.getProperty("english")}));
             ListIdiomas.setSelectedIndex(idioma);
             this.setTitle(defProps.getProperty("languaje"));
-            
+
             f.close();
-        }catch(IOException e){
+        } catch (IOException e) {
             System.err.println("Error al cargar idioma por defecto");
         }
     }
@@ -168,34 +172,32 @@ public class IdiomaView extends javax.swing.JDialog {
 private void BotonEstablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEstablecerActionPerformed
     Properties defProps = new Properties();
     Integer idioma = this.ListIdiomas.getSelectedIndex();
-    
+
     //ALAMACENO EL IDIOMA SELECCIONADO PARA QUE LA PROXIMA VEZ QUE SE ABRA
     //LA APLICACION SE ENCUENTRE EN EL IDIOMA SELECCIONADO
-    try{
+    try {
         //Obtengo las propiedades actuales
         InputStream fi = new FileInputStream("Recursos/config.properties");
         defProps.load(fi);
         fi.close();
-        
+
         //modifico las 
-        defProps.setProperty("default_languaje",idioma.toString()); 
-        
+        defProps.setProperty("default_languaje", idioma.toString());
+
         //almaceno propiedades
-       OutputStream fo = new FileOutputStream("Recursos/config.properties");        
-       defProps.store(fo,null);
-       fo.close();
-    }catch(IOException e){
+        OutputStream fo = new FileOutputStream("Recursos/config.properties");
+        defProps.store(fo, null);
+        fo.close();
+    } catch (IOException e) {
         e.printStackTrace();
     }
-    
+
     //ESTABLEZCO EL IDIOMA EN EL JFRAME CasionView
     ((CasinoView) this.getParent()).setIdioma(idioma);
-    
+
     //CIERRO EL DIALOGO
     this.dispose();
 }//GEN-LAST:event_BotonEstablecerActionPerformed
-
-   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonEstablecer;
     private javax.swing.JLabel LabelSelectLanguaje;
