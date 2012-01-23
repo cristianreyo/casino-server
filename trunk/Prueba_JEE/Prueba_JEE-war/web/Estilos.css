@@ -1,0 +1,30 @@
+/* 
+    Document   : Estilos
+    Created on : 22-ene-2012, 17:54:48
+    Author     : miguel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+html, body {  
+    height:100%;  
+    margin:0;  
+}  
+body {  
+    position:relative;  
+    min-width:700px;  
+    min-height:500px;  
+}  
+
+#formulario_registro {  
+    position:absolute;  
+    background-color:#ccc;  
+    width:700px;  
+    height:500px;  
+    top:50%;  
+    left:50%;  
+    margin-top:-250px;  
+    margin-left:-350px;  
+} 
+
